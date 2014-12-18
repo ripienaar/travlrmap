@@ -9,7 +9,7 @@
   :street_view_control: true
   :overview_control: false
   :pan_control: true
-  :heading: My Travels
+  :title: My Travels
 
 :views:
   :default:
