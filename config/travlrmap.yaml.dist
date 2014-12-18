@@ -25,8 +25,8 @@
 
 :types:
   :visit:
-    :icon: http://www.google.com/intl/en_us/mapfiles/ms/micons/orange-dot.png
+    :icon: /markers/mini-ORANGE-BLANK.png
   :transit:
-    :icon: http://www.google.com/intl/en_us/mapfiles/ms/micons/blue-dot.png
+    :icon: /markers/mini-BLUE-BLANK.png
   :lived:
-    :icon: http://www.google.com/intl/en_us/mapfiles/ms/micons/green-dot.png
+    :icon: /markers/mini-GREEN-BLANK.png

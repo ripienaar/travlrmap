@@ -1,0 +1,38 @@
+---
+:points:
+- :type: :visit
+  :lon: -73.961334
+  :title: New York
+  :lat: 40.784506
+  :country: United States
+  :comment: Sample Data
+- :type: :visit
+  :lon: -71.046524
+  :title: Boston
+  :lat: 42.363871
+  :country: United States
+  :comment: Sample Data
+- :type: :visit
+  :lon: -122.593861
+  :title: Portland
+  :lat: 45.590257
+  :country: United States
+  :comment: Sample Data
+- :type: :visit
+  :lon: -122.414474
+  :title: San Francisco
+  :lat: 37.801104
+  :country: United States
+  :comment: Sample Data
+- :type: :visit
+  :lon: -122.217236
+  :title: San Francisco
+  :lat: 37.722392
+  :country: United States
+  :comment: Sample Data
+- :type: :visit
+  :lon: -97.7534014
+  :lat: 30.3077609
+  :title: Austin
+  :country: United States
+  :comment: Sample Data

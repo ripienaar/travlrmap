@@ -1,0 +1,26 @@
+---
+:points:
+- :type: :visit
+  :lon: 4.42028
+  :title: Antwerp
+  :lat: 51.216024
+  :country: Belgium
+  :comment: Sample Data
+- :type: :visit
+  :lon: 3.227577
+  :title: Brugge
+  :lat: 51.213658
+  :country: Belgium
+  :comment: Sample Data
+- :type: :visit
+  :lon: 4.358311
+  :title: Brussels
+  :lat: 50.857923
+  :country: Belgium
+  :comment: Sample Data
+- :type: :visit
+  :lon: 3.744965
+  :title: Ghent
+  :lat: 51.043768
+  :country: Belgium
+  :comment: Sample Data
