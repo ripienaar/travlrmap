@@ -24,7 +24,7 @@ module Travlrmap
       @points = []
 
       Array(@config[:map][:data]).each do |map|
-        point_file = File.join(File.expand_path(File.dirname(__FILE__)), "../..", "config", map)
+        point_file = File.join(File.expand_path(App.root, "config", map))
         data = YAML.load_file(point_file)
 
         @points.concat(data[:points])
