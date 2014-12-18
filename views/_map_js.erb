@@ -1,0 +1,32 @@
+<script type="text/javascript">
+  $(document).ready(function(){
+   var map = new GMaps({
+      el: '#main_map',
+      lat: <%= @map_view[:lat] %>,
+      lng: <%= @map_view[:lon] %>,
+      zoom: <%= @map_view[:zoom] %>,
+      zoomControl : <%= @zoom_control %>,
+      mapTypeControl : <%= @map_type_control %>,
+      streetViewControl : <%= @street_view_control %>,
+      overviewMapControl : <%= @overview_control %>,
+      panControl : <%= @pan_control %>,
+      zoomControlOpt: {
+          style : 'DEFAULT',
+          position: 'TOP_LEFT'
+      },
+    });
+<% @points.each do |point| %>
+    map.addMarker({
+            lat: <%= point[:lat] %>,
+            lng: <%= point[:lon] %>,
+            title: "<%= h point[:title] %>",
+            icon: "<%= @types[ point[:type] ][:icon] %>",
+            <% if point[:comment] %>
+            infoWindow: {
+              content: '<p><%= h point[:comment] %></p>'
+            }
+            <% end %>
+    });
+<% end %>
+  });
+</script>

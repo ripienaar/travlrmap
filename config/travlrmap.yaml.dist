@@ -1,0 +1,31 @@
+:map:
+  :data:
+    - europe.yaml
+    - america.yaml
+  :width: "80%"
+  :height: "90%"
+  :zoom_control: true
+  :map_type_control: true
+  :street_view_control: true
+  :overview_control: false
+  :pan_control: true
+
+:views:
+  :default:
+    :lat: 20
+    :lon: 0
+    :zoom: 2
+    :description: World
+  :europe:
+    :lat: 48.195387
+    :lon: 10.634766
+    :zoom: 6
+    :description: Europe
+
+:types:
+  :visit:
+    :icon: http://www.google.com/intl/en_us/mapfiles/ms/micons/orange-dot.png
+  :transit:
+    :icon: http://www.google.com/intl/en_us/mapfiles/ms/micons/blue-dot.png
+  :lived:
+    :icon: http://www.google.com/intl/en_us/mapfiles/ms/micons/green-dot.png
