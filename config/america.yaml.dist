@@ -6,12 +6,16 @@
   :lat: 40.784506
   :country: United States
   :comment: Sample Data
+  :href: http://en.wikipedia.org/wiki/New_York
+  :linktext: Wikipedia
 - :type: :visit
   :lon: -71.046524
   :title: Boston
   :lat: 42.363871
   :country: United States
   :comment: Sample Data
+  :href: http://en.wikipedia.org/wiki/Boston
+  :linkimg: https://pbs.twimg.com/profile_images/430836891198320640/_-25bnPr.jpeg
 - :type: :visit
   :lon: -122.593861
   :title: Portland
