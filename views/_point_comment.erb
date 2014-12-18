@@ -1,0 +1,15 @@
+"<p><h4><%= h point[:title] %></h3> \
+<% if point[:href] && point[:linkimg] %>
+<%   if point[:comment] %>
+<%=    h point[:comment] %><br /><br /> \
+<%   end %>
+<a href='<%= point[:href] %>' target='_blank'><img src='<%= point[:linkimg] %>'></a> \
+<% elsif point[:href] && point[:linktext] %>
+<%   if point[:comment] %>
+<%=    h point[:comment] %><br /><br /> \
+<%   end %>
+<a href='<%= point[:href] %>' target='_blank'><%= point[:linktext] %></a> \
+<% elsif point[:comment] %>
+<%= h point[:comment] %> \
+<% end %>
+</p>"

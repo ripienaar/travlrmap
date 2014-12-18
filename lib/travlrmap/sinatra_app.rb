@@ -7,7 +7,7 @@ module Travlrmap
 
       load_map
 
-      super
+      super()
     end
 
     set :static, true
@@ -31,16 +31,24 @@ module Travlrmap
       end
     end
 
-    get '/:view?' do
-      params[:view] ? view = params[:view].intern : view = :default
-
+    def set_map_vars(view)
       @map_view = @config[:views][view]
       @zoom_control = @map[:zoom_control].nil? ? true : @map[:zoom_control]
       @map_type_control = @map[:map_type_control].nil? ? true : @map[:map_type_control]
       @street_view_control = @map[:street_view_control].nil? ? false : @map[:street_view_control]
       @overview_control = @map[:overview_control].nil? ? false : @map[:overview_control]
       @pan_control = @map[:pan_control].nil? ? true : @map[:pan_control]
+    end
 
+    get '/view/:view' do
+      params[:view] ? view = params[:view].intern : view = :default
+
+      set_map_vars(view)
+      erb :index
+    end
+
+    get '/' do
+      set_map_vars(:default)
       erb :index
     end
   end

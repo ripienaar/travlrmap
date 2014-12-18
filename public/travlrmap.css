@@ -1,0 +1,10 @@
+html, body {
+  height: 100%;
+  padding-top: 50px;
+}
+
+.map {
+  padding: 40px 15px;
+  text-align: center;
+  height: 90%;
+}

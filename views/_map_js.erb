@@ -21,11 +21,9 @@
             lng: <%= point[:lon] %>,
             title: "<%= h point[:title] %>",
             icon: "<%= @types[ point[:type] ][:icon] %>",
-            <% if point[:comment] %>
             infoWindow: {
-              content: '<p><%= h point[:comment] %></p>'
+              content: <%= erb :"_point_comment", :layout => false, :locals => {:point => point} %>
             }
-            <% end %>
     });
 <% end %>
   });
