@@ -45,6 +45,8 @@ module Travlrmap
     end
 
     def to_kml
+      require 'ruby_kml'
+
       kml = KMLFile.new
       document = KML::Document.new(:name => "Travlrmap Data")
       folder = KML::Folder.new(:name => "Countries")
