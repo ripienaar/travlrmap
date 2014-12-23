@@ -18,6 +18,10 @@ module Travlrmap
       include Rack::Utils
 
       alias_method :h, :escape_html
+
+      def base_url
+        @base_url ||= "#{request.env['rack.url_scheme']}://#{request.env['HTTP_HOST']}"
+      end
     end
 
     def kml_style_url(type)
@@ -68,7 +72,7 @@ module Travlrmap
 
         f.features << KML::Placemark.new(
           :name        => point[:title],
-          :description => point[:comment],
+          :description => erb(:"_point_comment", :layout => false, :locals => {:point => point}),
           :geometry    => KML::Point.new(:coordinates => {:lat => point[:lat], :lng => point[:lon]}),
           :style_url   => "#%s" % kml_style_url(point[:type])
         )

@@ -1,30 +1,24 @@
 <script type="text/javascript">
-  $(document).ready(function(){
-   var map = new GMaps({
-      el: '#main_map',
-      lat: <%= @map_view[:lat] %>,
-      lng: <%= @map_view[:lon] %>,
-      zoom: <%= @map_view[:zoom] %>,
-      zoomControl : <%= @zoom_control %>,
-      mapTypeControl : <%= @map_type_control %>,
-      streetViewControl : <%= @street_view_control %>,
-      overviewMapControl : <%= @overview_control %>,
-      panControl : <%= @pan_control %>,
-      zoomControlOpt: {
-          style : 'DEFAULT',
-          position: 'TOP_LEFT'
-      },
+    var map;
+    $(document).ready(function(){
+      infoWindow = new google.maps.InfoWindow({});
+      map = new GMaps({
+        div: '#main_map',
+        zoom: <%= @map_view[:zoom] %>,
+        lat: <%= @map_view[:lat] %>,
+        lng: <%= @map_view[:lon] %>,
+      });
+      map.loadFromKML({
+        url: '<%= base_url %>/kml?t=<%= Time.now.to_i %>',
+        suppressInfoWindows: true,
+        preserveViewport: true,
+        events: {
+          click: function(point){
+            infoWindow.setContent(point.featureData.infoWindowHtml);
+            infoWindow.setPosition(point.latLng);
+            infoWindow.open(map.map);
+          }
+        }
+      });
     });
-<% @points.each do |point| %>
-    map.addMarker({
-            lat: <%= point[:lat] %>,
-            lng: <%= point[:lon] %>,
-            title: "<%= h point[:title] %>",
-            icon: "<%= @types[ point[:type] ][:icon] %>",
-            infoWindow: {
-              content: <%= erb :"_point_comment", :layout => false, :locals => {:point => point} %>
-            }
-    });
-<% end %>
-  });
 </script>
