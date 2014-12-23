@@ -1,6 +1,7 @@
 GEM
   remote: http://rubygems.org/
   specs:
+    builder (3.2.2)
     gli (2.12.2)
     httparty (0.11.0)
       multi_json (~> 1.0)
@@ -8,9 +9,13 @@ GEM
     json (1.8.1)
     multi_json (1.10.1)
     multi_xml (0.5.5)
+    nokogiri (1.5.2)
     rack (1.6.0)
     rack-protection (1.5.3)
       rack
+    ruby_kml (0.1.7)
+      builder
+      nokogiri
     sinatra (1.4.5)
       rack (~> 1.4)
       rack-protection (~> 1.4)
@@ -24,4 +29,6 @@ DEPENDENCIES
   gli
   httparty (= 0.11.0)
   json
+  nokogiri (= 1.5.2)
+  ruby_kml
   sinatra

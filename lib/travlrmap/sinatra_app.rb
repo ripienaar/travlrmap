@@ -20,6 +20,10 @@ module Travlrmap
       alias_method :h, :escape_html
     end
 
+    def kml_style_url(type)
+      "travlrmap-%s-style" % type
+    end
+
     def load_map
       @points = []
 
@@ -40,6 +44,40 @@ module Travlrmap
       @pan_control = @map[:pan_control].nil? ? true : @map[:pan_control]
     end
 
+    def to_kml
+      kml = KMLFile.new
+      document = KML::Document.new(:name => "Travlrmap Data")
+      folder = KML::Folder.new(:name => "Countries")
+      folders = {}
+
+      @types.each do |k, t|
+        document.styles << KML::Style.new(
+          :id         => kml_style_url(k),
+          :icon_style => KML::IconStyle.new(:icon => KML::Icon.new(:href => t[:icon]))
+        )
+      end
+
+      @points.sort_by{|p| p[:country]}.each do |point|
+        unless folders[point[:country]]
+          folder.features << folders[point[:country]] = KML::Folder.new(:name => point[:country])
+        end
+
+        f = folders[point[:country]]
+
+        f.features << KML::Placemark.new(
+          :name        => point[:title],
+          :description => point[:comment],
+          :geometry    => KML::Point.new(:coordinates => {:lat => point[:lat], :lng => point[:lon]}),
+          :style_url   => "#%s" % kml_style_url(point[:type])
+        )
+      end
+
+      document.features << folder
+      kml.objects << document
+
+      kml.render
+    end
+
     get '/view/:view' do
       params[:view] ? view = params[:view].intern : view = :default
 
@@ -50,6 +88,11 @@ module Travlrmap
     get '/' do
       set_map_vars(:default)
       erb :index
+    end
+
+    get '/kml' do
+      content_type :"application/vnd.google-earth.kml+xml"
+      to_kml
     end
   end
 end
