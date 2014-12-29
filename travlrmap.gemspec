@@ -9,7 +9,7 @@ Gem::Specification::new do |spec|
   spec.summary = "travlrmap"
   spec.description = "description: Sinatra based map builder"
 
-  spec.files = FileList["lib/**/*.rb", "views/**/*", "public/**/*", "config/travlrmap.yaml.dist", "config.ru", "Gemfile", "Gemfile.lock"]
+  spec.files = Dir["lib/**/*.rb", "views/**/*", "public/**/*", "config/travlrmap.yaml.dist", "config.ru", "Gemfile", "Gemfile.lock"]
   spec.executables = []
 
   spec.require_path = "lib"
