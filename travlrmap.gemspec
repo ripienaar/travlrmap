@@ -16,10 +16,14 @@ Gem::Specification::new do |spec|
 
   spec.has_rdoc = false
   spec.test_files = nil
+
   spec.add_dependency 'sinatra'
   spec.add_dependency 'bundler'
   spec.add_dependency 'httparty'
   spec.add_dependency 'ruby_kml'
+  spec.add_dependency 'gli'
+  spec.add_dependency 'httparty', '0.11.0'
+  spec.add_dependency 'nokogiri', '1.5.2'
 
   spec.extensions.push(*[])
 

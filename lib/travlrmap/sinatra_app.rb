@@ -5,6 +5,9 @@ module Travlrmap
       @map = @config[:map]
       @types = @config[:types]
 
+      raise "The constant APPROOT should be set in config.ru to the directory your webserver is serving from" unless defined?(APPROOT)
+      raise "The directory %s set in APPROOT does not exist" % APPROOT unless File.directory?(APPROOT)
+
       load_map
 
       super()
@@ -99,6 +102,18 @@ module Travlrmap
     get '/kml' do
       content_type :"application/vnd.google-earth.kml+xml"
       to_kml
+    end
+
+    get '/images/*' do
+      requested_file = params[:splat].first
+      file = File.expand_path(File.join("images", requested_file), APPROOT)
+
+      if File.exist?(file)
+        send_file(file)
+      else
+        status 404
+        "Not Found"
+      end
     end
   end
 end
