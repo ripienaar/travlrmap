@@ -9,7 +9,7 @@
         lng: <%= @map_view[:lon] %>,
       });
       map.loadFromKML({
-        url: '<%= base_url %>/kml?t=<%= Time.now.to_i %>',
+        url: '<%= base_url %>/kml?t=<%= (Time.now.to_i/600.to_f).round * 600 %>',
         suppressInfoWindows: true,
         preserveViewport: true,
         events: {

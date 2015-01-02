@@ -54,6 +54,7 @@
 
     <div class="container" style="width:<%= @map[:width] %>; height:<%= @map[:height] %>;">
       <%= yield %>
+      <%= erb :"_footer", :layout => false, :locals => {:points => @points, :config => @config} %>
     </div>
   </body>
 </html>
