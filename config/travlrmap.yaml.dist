@@ -26,7 +26,10 @@
 :types:
   :visit:
     :icon: http://your.site/markers/mini-ORANGE-BLANK.png
+    :description: Visit
   :transit:
     :icon: http://your.site/markers/mini-BLUE-BLANK.png
+    :description: Transit
   :lived:
     :icon: http://your.site/markers/mini-GREEN-BLANK.png
+    :description: Lived
