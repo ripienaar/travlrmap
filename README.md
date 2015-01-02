@@ -77,6 +77,28 @@ Important to note if you change add points or types etc it will take up to 6 min
 them to be visible.  Google will fetch the KML data and cache it for a while so updates
 are not immediate.
 
+Adding points?
+--------------
+
+Points are just edited by hand into the YAML files, a little utility exist that can help
+that you can get by installing the *travlrmap* gem.
+
+```
+$ travlrmap search --comment "Airshow" --type visit "farnborough, uk" --href https://www.flickr.com/photos/ripienaar/tags/farnborough --linktext 'Flickr Photos'
+---
+- :type: :visit
+  :linktext: Flickr Photos
+  :country: United Kingdom
+  :comment: Airshow
+  :lon: -0.752615
+  :lat: 51.2868939
+  :href: https://www.flickr.com/photos/ripienaar/tags/farnborough
+  :title: Farnborough
+```
+
+This will use Google to geolocate your place and ouput the YAML for the point. The geolocation
+is not awesome but it helps, something better will be made in future. Remove the trailing ```---```.
+
 Config Reference?
 -----------------
 

@@ -17,6 +17,8 @@ Gem::Specification::new do |spec|
   spec.has_rdoc = false
   spec.test_files = nil
 
+  s.bindir = 'bin'
+
   spec.add_dependency 'sinatra'
   spec.add_dependency 'bundler'
   spec.add_dependency 'httparty'
