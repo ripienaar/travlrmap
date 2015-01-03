@@ -51,6 +51,14 @@ module Travlrmap
       @pan_control = @map[:pan_control].nil? ? true : @map[:pan_control]
     end
 
+    def to_json
+      @points.sort_by{|p| p[:country]}.map do |point|
+        point[:popup_html] = erb(:"_point_comment", :layout => false, :locals => {:point => point})
+        point[:icon] = @types[ point[:type] ][:icon]
+        point
+      end.to_json
+    end
+
     def to_kml
       require 'ruby_kml'
 
@@ -99,9 +107,14 @@ module Travlrmap
       erb :index
     end
 
-    get '/kml' do
+    get '/points/kml' do
       content_type :"application/vnd.google-earth.kml+xml"
       to_kml
+    end
+
+    get '/points/json' do
+      content_type :"application/json"
+      to_json
     end
 
     get '/images/*' do

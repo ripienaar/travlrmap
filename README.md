@@ -129,6 +129,9 @@ These settings enable and disable parts of the Google maps UI
 #### :title:
 The title to show top of the page
 
+#### :cluster:
+Set this to true to enable clustering of points, especially useful if you have many many points
+
 ### :views: Section
 
 Custom views to show pre-decided parts of your map.  You should configure at least

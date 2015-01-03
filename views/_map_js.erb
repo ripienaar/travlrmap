@@ -1,5 +1,25 @@
 <script type="text/javascript">
     var map;
+
+    function addPoints(data) {
+      var markers_data = [];
+      if (data.length > 0) {
+         for (var i = 0; i < data.length; i++) {
+           markers_data.push({
+              lat: data[i].lat,
+              lng: data[i].lon,
+              title: data[i].title,
+              icon: data[i].icon,
+              infoWindow: {
+                content: data[i].popup_html
+              },
+           });
+         }
+      }
+
+      map.addMarkers(markers_data);
+    }
+
     $(document).ready(function(){
       infoWindow = new google.maps.InfoWindow({});
       map = new GMaps({
@@ -7,18 +27,14 @@
         zoom: <%= @map_view[:zoom] %>,
         lat: <%= @map_view[:lat] %>,
         lng: <%= @map_view[:lon] %>,
-      });
-      map.loadFromKML({
-        url: '<%= base_url %>/kml?t=<%= (Time.now.to_i/600.to_f).round * 600 %>',
-        suppressInfoWindows: true,
-        preserveViewport: true,
-        events: {
-          click: function(point){
-            infoWindow.setContent(point.featureData.infoWindowHtml);
-            infoWindow.setPosition(point.latLng);
-            infoWindow.open(map.map);
+        <% if @map[:cluster] %>
+          markerClusterer: function(map) {
+            return new MarkerClusterer(map);
           }
-        }
+        <% end %>
       });
+
+      points = $.getJSON("/points/json");
+      points.done(addPoints);
     });
 </script>

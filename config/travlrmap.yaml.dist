@@ -10,6 +10,7 @@
   :overview_control: false
   :pan_control: true
   :title: My Travels
+  :cluster: true
 
 :views:
   :default:
