@@ -1,2 +1,10 @@
 <div class="map" id="main_map"> </div>
 <%= erb :"_map_js", :layout => false %>
+<div align=center>
+<br />
+<% @config[:types].sort_by{|_, s| s[:description]}.each do |_, settings| %>
+  <img src="<%= settings[:icon] %>">&nbsp;<%= settings[:description] %>
+<% end %>
+<br />
+<%= @points.size %> locations in <%= @points.map{|p| p[:country]}.uniq.size %> countries
+</div>
