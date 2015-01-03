@@ -32,7 +32,8 @@
             options = {
               gridSize: <%= @map.fetch(:cluster_grid_size, 40) %>,
               minimumClusterSize: <%= @map.fetch(:cluster_minumum_size, 2) %>,
-              zoomOnClick: <%= @map.fetch(:cluster_zoom_on_click, true) %>
+              zoomOnClick: <%= @map.fetch(:cluster_zoom_on_click, true) %>,
+              averageCenter: true
             };
 
             return new MarkerClusterer(map, [], options);

@@ -154,10 +154,10 @@ browsing to google maps and looking at the URL.
 
 This defines type of visit, you can reference these later when creating points.
 
-The sample data sets up 3 types, the url in :icon: has to be a full URL and not a
-relative URL, this is because Google fetches these and not your browser.
+The sample data sets up 3 types.
 
 A number of markers are included already for you to use, you can see them [here](https://github.com/ripienaar/travlrmap/tree/master/public/markers).
+A handy service for creating custom ones on demand can be found at http://www.googlemapsmarkers.com/
 
 Contact?
 --------
