@@ -11,6 +11,9 @@
   :pan_control: true
   :title: My Travels
   :cluster: true
+  :cluster_grid_size: 40
+  :cluster_minumum_size: 2
+  :cluster_zoom_on_click: true
 
 :views:
   :default:

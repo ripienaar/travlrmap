@@ -132,6 +132,16 @@ The title to show top of the page
 #### :cluster:
 Set this to true to enable clustering of points, especially useful if you have many many points
 
+#### :cluster_grid_size:
+The size of a grid that gets clustered by the clustering library, adjust this if you find that too
+are being combined on the map
+
+#### :cluster_minumum_size:
+A specific grid of the cluster must have at least this many items before its clustered, defaults to 2
+
+#### :cluster_zoom_on_click:
+Set to false to disable the behavior where a cluster click zooms the map to expand all the items in it
+
 ### :views: Section
 
 Custom views to show pre-decided parts of your map.  You should configure at least

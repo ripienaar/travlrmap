@@ -29,7 +29,13 @@
         lng: <%= @map_view[:lon] %>,
         <% if @map[:cluster] %>
           markerClusterer: function(map) {
-            return new MarkerClusterer(map);
+            options = {
+              gridSize: <%= @map.fetch(:cluster_grid_size, 40) %>,
+              minimumClusterSize: <%= @map.fetch(:cluster_minumum_size, 2) %>,
+              zoomOnClick: <%= @map.fetch(:cluster_zoom_on_click, true) %>
+            };
+
+            return new MarkerClusterer(map, [], options);
           }
         <% end %>
       });
