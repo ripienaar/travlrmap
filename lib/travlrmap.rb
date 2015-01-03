@@ -2,6 +2,7 @@ require 'rubygems'
 require 'bundler/setup'
 require 'yaml'
 require 'sinatra'
+require 'json'
 
 Bundler.require(:default)
 
