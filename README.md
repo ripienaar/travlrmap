@@ -142,6 +142,14 @@ A specific grid of the cluster must have at least this many items before its clu
 #### :cluster_zoom_on_click:
 Set to false to disable the behavior where a cluster click zooms the map to expand all the items in it
 
+#### :cluster_image_path:, :cluster_image_extension:, :cluster_image_sizes:
+You can customize the cluster images being used and a number has been provided in the basic HTML colors.
+
+The urls being loaded are in the form ```:cluster_image_path:N.:cluster_image_extension:``` where ```N``` is a number from 1 to 5.
+
+These images have to be square sized and if you tweak the sizes you should specify the sizes for image 1 to 5 in the array :cluster_image_sizes: as here.
+
+
 ### :views: Section
 
 Custom views to show pre-decided parts of your map.  You should configure at least

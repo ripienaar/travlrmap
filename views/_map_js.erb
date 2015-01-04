@@ -33,6 +33,11 @@
               gridSize: <%= @map.fetch(:cluster_grid_size, 40) %>,
               minimumClusterSize: <%= @map.fetch(:cluster_minumum_size, 2) %>,
               zoomOnClick: <%= @map.fetch(:cluster_zoom_on_click, true) %>,
+              imagePath: '<%= @map.fetch(:cluster_image_path, "/cluster/t") %>',
+              imageExtension: '<%= @map.fetch(:cluster_image_extension, "png") %>',
+              <% if @map.include?(:cluster_image_sizes) %>
+              imageSizes: [<%= @map[:cluster_image_sizes].join(",") %>],
+              <% end %>
               averageCenter: true
             };
 
