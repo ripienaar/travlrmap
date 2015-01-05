@@ -1,7 +1,7 @@
 #!/usr/bin/ruby
 
 
-SIZES = [24, 26, 31, 37, 43]
+SIZES = [25, 27, 31, 37, 43]
 
 COLORS = {
   "aqua" => "00ffff",

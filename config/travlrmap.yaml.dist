@@ -16,7 +16,7 @@
   :cluster_zoom_on_click: true
   :cluster_image_path: /cluster/cluster-RED-
   :cluster_image_extension: png
-  :cluster_image_sizes: [24, 26, 31, 37, 43]
+  :cluster_image_sizes: [25, 27, 31, 37, 43]
 
 :views:
   :default:
