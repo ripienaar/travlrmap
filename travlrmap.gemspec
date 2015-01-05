@@ -26,6 +26,7 @@ Gem::Specification::new do |spec|
   spec.add_dependency 'gli'
   spec.add_dependency 'httparty', '0.11.0'
   spec.add_dependency 'nokogiri', '1.5.2'
+  spec.add_dependency 'rack', '1.5.2'
 
   spec.extensions.push(*[])
 
