@@ -10,7 +10,7 @@ GEM
     multi_json (1.10.1)
     multi_xml (0.5.5)
     nokogiri (1.5.2)
-    rack (1.6.0)
+    rack (1.5.2)
     rack-protection (1.5.3)
       rack
     ruby_kml (0.1.7)
@@ -30,5 +30,6 @@ DEPENDENCIES
   httparty (= 0.11.0)
   json
   nokogiri (= 1.5.2)
+  rack (= 1.5.2)
   ruby_kml
   sinatra
