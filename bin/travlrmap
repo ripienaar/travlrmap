@@ -42,6 +42,9 @@ command :search do |c|
   c.desc 'Visit type'
   c.flag [:type, :t], :required => true
 
+  c.desc 'Visit date'
+  c.flag [:date]
+
   c.action do |go, o, args|
     raise("Cannot specify both --linktext and --linkimg") if o[:linktext] && o[:linkimg]
     raise("Need --linktext or --linkimg when specifying --href") if (o[:href] && !(o[:linktext] || o[:linkimg]))
@@ -65,9 +68,12 @@ command :search do |c|
         record[:country] = get_component_by_type(result["address_components"], "country")
         record[:comment] = o[:comment]
         record[:type] = o[:type].intern
+        record[:date] = Time.now.strftime("%Y-%d-%m")
+
         record[:linktext] = o[:linktext] if o[:linktext]
         record[:linkimg] = o[:linkimg] if o[:linkimg]
         record[:href] = o[:href] if o[:href]
+        record[:date] = o[:date] if o[:date]
 
         puts YAML.dump([record])
       else

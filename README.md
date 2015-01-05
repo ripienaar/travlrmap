@@ -94,6 +94,7 @@ $ travlrmap search --comment "Airshow" --type visit "farnborough, uk" --href htt
   :lat: 51.2868939
   :href: https://www.flickr.com/photos/ripienaar/tags/farnborough
   :title: Farnborough
+  :date: 2015-01-30
 ```
 
 This will use Google to geolocate your place and ouput the YAML for the point. The geolocation
