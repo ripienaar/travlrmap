@@ -1,0 +1,203 @@
+<div class="row">
+  <form id="search_box">
+    <div class="col-md-9">
+      <input type="text" class="form-control" id="location">
+    </div>
+    <div class="col-md-1">
+      <button type="submit" class="btn btn-primary">Search</button>
+    </div>
+  </form>
+</div>
+<div class="row"><div class="col-md-12">&nbsp;</div></div>
+<div class="row" style="height: 80%">
+  <div class="col-md-9" style="height: 100%">
+    <div class="map" id="main_map"> </div>
+  </div>
+  <div class="col-md-3">
+    <form id="point_info">
+      <div class="form-group">
+        <input type="text" class="form-control" id="point_title" placeholder="Title">
+      </div>
+      <div class="form-group">
+        <input type="text" class="form-control" id="point_comment" placeholder="Comment">
+      </div>
+      <div class="form-group">
+        <select id="point_type" class="form-control">
+          <% @types.each do |name, type| %>
+            <option value="<%= name %>"><%= type[:description] %></option>
+          <% end %>
+        </select>
+      </div>
+      <div class="form-group">
+        <input type="text" class="form-control" id="point_date" placeholder="yyyy-mm-dd">
+      </div>
+      <div class="form-group">
+        <input type="text" class="form-control" id="point_href" placeholder="Link URL">
+      </div>
+      <div class="form-group">
+        <input type="text" class="form-control" id="point_linktext" placeholder="Link Text">
+      </div>
+      <div class="form-group">
+        <input type="text" class="form-control" id="point_linkimg" placeholder="Link Image URL">
+      </div>
+      <div class="form-group">
+        <input type="text" class="form-control" id="point_country" placeholder="Country">
+      </div>
+      <div class="form-group">
+      <button type="submit" class="btn btn-primary">Preview</button>
+      </div>
+    </form>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-9"><center>Perform a search to place a marker or right click to place one anywhere.</center></div>
+</div>
+
+<script type="text/javascript">
+    var map;
+    var marker;
+
+    function getLocationName(results) {
+      var addrComponents = results[0].address_components;
+
+      for (var i = 0; i < addrComponents.length; i++) {
+        if (addrComponents[i].types[0] == "point_of_interest") {
+          return addrComponents[i].long_name;
+        }
+
+        if (addrComponents[i].types[0] == "postal_town") {
+          return addrComponents[i].long_name;
+        }
+      }
+
+      return results[0].formatted_address;
+    }
+
+    function getCountry(results) {
+      var addrComponents = results[0].address_components;
+
+      for (var i = 0; i < addrComponents.length; i++) {
+        if (addrComponents[i].types[0] == "country") {
+          return addrComponents[i].long_name;
+        }
+
+        if (addrComponents[i].types.length == 2) {
+          if (addrComponents[i].types[0] == "political") {
+            return addrComponents[i].long_name;
+          }
+        }
+      }
+      return "n/a";
+    }
+
+    function updateForm(results, status, createMarker) {
+      if (status == google.maps.GeocoderStatus.OK) {
+        var latlng = results[0].geometry.location;
+
+        if (createMarker) {
+          map.setZoom(15);
+          map.setCenter(latlng.lat(), latlng.lng());
+          marker = map.addMarker({
+            lat: latlng.lat(),
+            lng: latlng.lng(),
+          });
+        }
+
+        document.getElementById('point_title').value = getLocationName(results);
+        document.getElementById('point_country').value = getCountry(results);
+        document.getElementById('point_date').value = moment().format("YYYY-MM-DD");
+      } else {
+        alert("Geocode was not successful for the following reason: " + status);
+      }
+    }
+
+    $(document).ready(function() {
+      map = new GMaps({
+        div: '#main_map',
+        zoom: 3,
+        lat: 20,
+        lng: 0,
+      });
+
+      GMaps.on('rightclick', map.map, function(event) {
+        var lat = event.latLng.lat();
+        var lng = event.latLng.lng();
+
+        map.removeMarkers();
+        map.setCenter(lat, lng);
+
+        marker = map.addMarker({
+          lat: lat,
+          lng: lng,
+        });
+
+        GMaps.geocode({
+          lat: lat,
+          lng: lng,
+          callback: function(results, status) {
+            updateForm(results, status, false)
+          }
+        });
+      });
+
+      $('#point_info').submit(function(e) {
+        e.preventDefault();
+
+        var point = {};
+        point.type = document.getElementById('point_type').value
+        point.title = document.getElementById('point_title').value
+        point.comment = document.getElementById('point_comment').value
+        point.country = document.getElementById('point_country').value
+        point.date = document.getElementById('point_date').value
+        point.href = document.getElementById('point_href').value
+        point.linktext = document.getElementById('point_linktext').value
+        point.linkimg = document.getElementById('point_linkimg').value
+        point.lon = marker.position.lng();
+        point.lat = marker.position.lat();
+
+        document.getElementById('preview_html').innerHTML = "Validating point and fetching preview...";
+        document.getElementById('preview_yaml').innerHTML = "";
+
+        $('#myModal').modal({});
+
+        $.post("/points/validate", JSON.stringify(point), function(data) {
+          alert("Response: " + JSON.stringify(data));
+          document.getElementById('preview_html').innerHTML = data.html;
+          document.getElementById('preview_yaml').innerHTML = "<pre>" + data.yaml + "</pre>";
+        });
+      });
+
+      $('#search_box').submit(function(e) {
+        e.preventDefault();
+        map.removeMarkers();
+
+        GMaps.geocode({
+          address: $('#location').val().trim(),
+          callback: function(results, status) {
+            updateForm(results, status, true)
+          }
+        });
+      });
+    });
+</script>
+
+<!-- modal popup for point preview -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Point Preview</h4>
+      </div>
+      <div class="modal-body">
+        <div id="preview_html" align="center">
+        </div>
+        <div id="preview_yaml">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

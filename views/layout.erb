@@ -17,6 +17,8 @@
     <link rel="stylesheet" href="/travlrmap.css">
     <script src="/gmaps.js"></script>
     <script src="/markerclusterer_compiled.js"></script>
+    <script src="/moment.js"></script>
+    <script src="/js-yaml.min.js"></script>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -39,7 +41,7 @@
           <a class="navbar-brand" href="/"><%= @map[:title] %></a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
-          <ul class="nav navbar-nav">
+          <ul class="nav navbar-nav navbar-left">
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Views <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
@@ -49,6 +51,11 @@
               </ul>
             </li>
           </ul>
+          <% if @map[:show_geocode_link] %>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="/geocode">Geocode</a></li>
+          </ul>
+          <% end %>
         </div>
       </div>
     </nav>

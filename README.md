@@ -150,6 +150,9 @@ The urls being loaded are in the form ```:cluster_image_path:N.:cluster_image_ex
 
 These images have to be square sized and if you tweak the sizes you should specify the sizes for image 1 to 5 in the array :cluster_image_sizes: as here.
 
+#### :show_geocode_link:
+By default a ```geocode``` link is shown in the navbar that takes the user to a page allowing them to make
+a new point, this can be disabled using this option
 
 ### :views: Section
 

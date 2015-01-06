@@ -107,6 +107,10 @@ module Travlrmap
       erb :index
     end
 
+    get '/geocode' do
+      erb :geolocate
+    end
+
     get '/points/kml' do
       content_type :"application/vnd.google-earth.kml+xml"
       to_kml
@@ -115,6 +119,25 @@ module Travlrmap
     get '/points/json' do
       content_type :"application/json"
       to_json
+    end
+
+    post '/points/validate' do
+      content_type :"application/json"
+
+      data = JSON.parse(request.body.read)
+
+      point = {}
+
+      ["title", "comment", "country", "date", "href", "linktext", "linkimg", "lon", "lat"].each do |i|
+        point[i.intern] = data[i]
+      end
+
+      point[:type] = data["type"].intern
+
+      result = {"yaml" => YAML.dump([point]).lines.to_a[1..-1].join,
+                "html" => erb(:"_point_comment", :layout => false, :locals => {:point => point})}
+
+      result.to_json
     end
 
     get '/images/*' do

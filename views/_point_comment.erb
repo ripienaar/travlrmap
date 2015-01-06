@@ -1,17 +1,17 @@
 <p>
 <font size="+2"><%= point[:title] %></font>
 <hr>
-<% if point[:comment] %>
+<% if !point.fetch(:comment, "").empty? %>
 <%=  h point[:comment] %><br /><br />
 <% end %>
 
-<% if point[:href] %>
+<% if !point.fetch(:href, "").empty?  %>
      <a href='<%= point[:href] %>' target='_blank'>
-<%   if point[:linkimg] || point[:linktext] %>
-<%      if point[:linkimg] %>
+<%   if !point.fetch(:linkimg, "").empty? || !point.fetch(:linktext, "").empty? %>
+<%      if !point.fetch(:linkimg, "").empty? %>
           <img src='<%= point[:linkimg] %>'><br />
 <%      end %>
-<%      if point[:linktext] %>
+<%      if !point.fetch(:linktext, "").empty? %>
           <%= h point[:linktext] %>
 <%      end %>
 <%   else %>

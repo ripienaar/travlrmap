@@ -17,6 +17,7 @@
   :cluster_image_path: /cluster/cluster-RED-
   :cluster_image_extension: png
   :cluster_image_sizes: [25, 27, 31, 37, 43]
+  :show_geocode_link: true
 
 :views:
   :default:
