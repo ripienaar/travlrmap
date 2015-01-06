@@ -161,7 +161,6 @@
         $('#myModal').modal({});
 
         $.post("/points/validate", JSON.stringify(point), function(data) {
-          alert("Response: " + JSON.stringify(data));
           document.getElementById('preview_html').innerHTML = data.html;
           document.getElementById('preview_yaml').innerHTML = "<pre>" + data.yaml + "</pre>";
         });
