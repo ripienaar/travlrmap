@@ -171,6 +171,13 @@ The sample data sets up 3 types.
 A number of markers are included already for you to use, you can see them [here](https://github.com/ripienaar/travlrmap/tree/master/public/markers).
 A handy service for creating custom ones on demand can be found at http://www.googlemapsmarkers.com/
 
+Changelog?
+----------
+
+### 0.0.15
+  * Add /geocode url end point to assist in making points
+  * Remove the old ruby script for making points
+
 Contact?
 --------
 
