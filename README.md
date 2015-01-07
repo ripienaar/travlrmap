@@ -161,9 +161,9 @@ Changelog?
 ----------
 
 #### 0.0.18
-  * Auto close the date picker once a day has been selected (#3)
-  * Add a clear button to the date picker (#4)
-  * Do not highlight today (#4)
+  * Auto close the date picker once a day has been selected #3
+  * Add a clear button to the date picker #4
+  * Do not highlight today #4
 
 #### 0.0.17
   * Do not set empty point values to empty string and simplify point html creation as a result
