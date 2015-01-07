@@ -29,7 +29,8 @@ data files in YAML that gets rendered on a map.
   :linkimg: https://pbs.twimg.com/profile_images/430836891198320640/_-25bnPr.jpeg
 ```
 
-Here you can see 2 places being defined including links, images and so forth.
+Here you can see 2 places being defined including links, images and so forth.  A
+visual helper tool is provided to make these YAML points.
 
 It's not done, you can see it in action on my own site: http://travels.devco.net
 
@@ -170,7 +171,7 @@ will be needed then.
   :authenticate: true
   :admin_user: admin
   :admin_salt: a929d3a47ee0c151fcf2cfde9efabf605bb0f999c672cf5bd0816c303fd6f778
-  :admin_hash: 267d09bb203ec5d776dc9a20eb7dbc1a
+  :admin_hash: 156166b575d6074b82f7f6c8453b81b8
 ````
 
 To calculate a salt run the following command, salts must be at least 16 chanracters:
@@ -180,10 +181,11 @@ $ openssl rand 32 -hex
 a929d3a47ee0c151fcf2cfde9efabf605bb0f999c672cf5bd0816c303fd6f778
 ````
 
-Given the salt you can calculate your password hash:
+Given the salt you can calculate your password hash by concatenating your password and
+calculating the md5 of the combination:
 
 ````
-echo -n a929d3a47ee0c151fcf2cfde9efabf605bb0f999c672cf5bd0816c303fd6f778password | md5sum
+$ echo -n a929d3a47ee0c151fcf2cfde9efabf605bb0f999c672cf5bd0816c303fd6f778password | md5sum
 156166b575d6074b82f7f6c8453b81b8
 ````
 
