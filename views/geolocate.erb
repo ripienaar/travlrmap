@@ -1,7 +1,7 @@
 <div class="row">
   <form id="search_box">
     <div class="col-md-9">
-      <input type="text" class="form-control" id="location">
+      <input type="text" class="form-control" id="location" autofocus>
     </div>
     <div class="col-md-1">
       <button type="submit" class="btn btn-primary">Search</button>
@@ -28,7 +28,7 @@
           <% end %>
         </select>
       </div>
-      <div class="form-group">
+      <div class="form-group input-append">
         <input type="text" class="form-control" id="point_date" placeholder="yyyy-mm-dd">
       </div>
       <div class="form-group">
@@ -52,6 +52,10 @@
 <div class="row">
   <div class="col-md-9"><center>Perform a search to place a marker or right click to place one anywhere.</center></div>
 </div>
+
+<script src="/moment.js"></script>
+<script src="/js-yaml.min.js"></script>
+<script src="/datepicker/bootstrap-datepicker.js"></script>
 
 <script type="text/javascript">
     var map;
@@ -112,6 +116,11 @@
     }
 
     $(document).ready(function() {
+      $('#point_date').datepicker({
+        format: 'yyyy-mm-dd',
+        todayHighlight: true
+      });
+
       map = new GMaps({
         div: '#main_map',
         zoom: 3,

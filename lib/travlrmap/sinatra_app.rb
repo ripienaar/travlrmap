@@ -129,7 +129,11 @@ module Travlrmap
       point = {}
 
       ["title", "comment", "country", "date", "href", "linktext", "linkimg", "lon", "lat"].each do |i|
-        point[i.intern] = data[i]
+        if data[i].is_a?(String)
+          point[i.intern] = data[i] unless data[i].empty?
+        else
+          point[i.intern] = data[i]
+        end
       end
 
       point[:type] = data["type"].intern

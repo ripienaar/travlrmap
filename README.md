@@ -71,34 +71,20 @@ Your bundle is updated! Use `bundle show [gemname]` to see where a bundled gem i
 Check in everything into git and do ```git push heroku master``` when it's one your
 app should be up and running and accessible.
 
-Commit your files to your own git repo and start adding points.
-
-Important to note if you change add points or types etc it will take up to 6 minutes for
-them to be visible.  Google will fetch the KML data and cache it for a while so updates
-are not immediate.
+Commit your files to your own git repo and start adding points, access ```/geocode```
+for a visual tool to assist in making point YAML.
 
 Adding points?
 --------------
 
-Points are just edited by hand into the YAML files, a little utility exist that can help
-that you can get by installing the *travlrmap* gem.
+As of version 0.0.15 there's a visual helper to help you make points, you can access this
+at ```/geocode```, search for a place and the map will jump to it and drop a marker.  The
+form will pre-fill what it can, fill in the rest and hit preview.
 
-```
-$ travlrmap search --comment "Airshow" --type visit "farnborough, uk" --href https://www.flickr.com/photos/ripienaar/tags/farnborough --linktext 'Flickr Photos'
----
-- :type: :visit
-  :linktext: Flickr Photos
-  :country: United Kingdom
-  :comment: Airshow
-  :lon: -0.752615
-  :lat: 51.2868939
-  :href: https://www.flickr.com/photos/ripienaar/tags/farnborough
-  :title: Farnborough
-  :date: 2015-01-30
-```
+You'll see your point and the YAML to save.  You can also click arbitrary places using the
+right mouse button.
 
-This will use Google to geolocate your place and ouput the YAML for the point. The geolocation
-is not awesome but it helps, something better will be made in future. Remove the trailing ```---```.
+In future we might support saving points to a YAML file if you want.
 
 Config Reference?
 -----------------
@@ -174,7 +160,15 @@ A handy service for creating custom ones on demand can be found at http://www.go
 Changelog?
 ----------
 
-### 0.0.15
+#### 0.0.17
+  * Do not set empty point values to empty string and simplify point html creation as a result
+  * Add a datepicker to the geocoder to make entering dates easier
+  * Autofocus the search bar in the geocoder
+
+#### 0.0.16
+  * Remove some debugging
+
+#### 0.0.15
   * Add /geocode url end point to assist in making points
   * Remove the old ruby script for making points
 
