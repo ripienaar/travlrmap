@@ -22,6 +22,31 @@ module Travlrmap
 
       alias_method :h, :escape_html
 
+      def protected!
+        return if authorized?
+        headers['WWW-Authenticate'] = 'Basic realm="Restricted Area"'
+        halt(401, "Not authorized\n")
+      end
+
+      def authorized?
+        return true if !@map[:authenticate]
+
+        halt(500, ":admin_salt: is not set in the config") unless @map[:admin_salt]
+        halt(500, ":admin_salt: should be at least 16 characters") unless @map[:admin_salt].length >= 16
+        halt(500, ":admin_user: is not set in the config") unless @map[:admin_user]
+        halt(500, ":admin_hash: is not set in the config") unless @map[:admin_hash]
+
+        @auth ||=  Rack::Auth::Basic::Request.new(request.env)
+
+        if @auth.provided? && @auth.basic? && @auth.credentials
+          provided_hash = Digest::MD5.hexdigest("%s%s" % [@map[:admin_salt], @auth.credentials[1]])
+
+          return (@auth.credentials[0] == @map[:admin_user] && provided_hash == @map[:admin_hash])
+        end
+
+        false
+      end
+
       def base_url
         @base_url ||= "#{request.env['rack.url_scheme']}://#{request.env['HTTP_HOST']}"
       end
@@ -108,6 +133,8 @@ module Travlrmap
     end
 
     get '/geocode' do
+      protected!
+
       erb :geolocate
     end
 
@@ -122,6 +149,8 @@ module Travlrmap
     end
 
     post '/points/validate' do
+      protected!
+
       content_type :"application/json"
 
       data = JSON.parse(request.body.read)

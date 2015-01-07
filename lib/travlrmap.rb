@@ -3,6 +3,7 @@ require 'bundler/setup'
 require 'yaml'
 require 'sinatra'
 require 'json'
+require "digest/md5"
 
 Bundler.require(:default)
 

@@ -157,25 +157,37 @@ The sample data sets up 3 types.
 A number of markers are included already for you to use, you can see them [here](https://github.com/ripienaar/travlrmap/tree/master/public/markers).
 A handy service for creating custom ones on demand can be found at http://www.googlemapsmarkers.com/
 
-Changelog?
-----------
+Authentication?
+---------------
 
-#### 0.0.18
-  * Auto close the date picker once a day has been selected #3
-  * Add a clear button to the date picker #4
-  * Do not highlight today #4
+You can enable authentication on the ```/geocode``` url and the REST endpoing used to
+encode points, you have to set 4 config items in the configuration file in the map section.
 
-#### 0.0.17
-  * Do not set empty point values to empty string and simplify point html creation as a result
-  * Add a datepicker to the geocoder to make entering dates easier
-  * Autofocus the search bar in the geocoder
+Not much point to this today but in future I'll enable saving of data and authentication
+will be needed then.
 
-#### 0.0.16
-  * Remove some debugging
+````
+  :authenticate: true
+  :admin_user: admin
+  :admin_salt: a929d3a47ee0c151fcf2cfde9efabf605bb0f999c672cf5bd0816c303fd6f778
+  :admin_hash: 267d09bb203ec5d776dc9a20eb7dbc1a
+````
 
-#### 0.0.15
-  * Add /geocode url end point to assist in making points
-  * Remove the old ruby script for making points
+To calculate a salt run the following command, salts must be at least 16 chanracters:
+
+````
+$ openssl rand 32 -hex
+a929d3a47ee0c151fcf2cfde9efabf605bb0f999c672cf5bd0816c303fd6f778
+````
+
+Given the salt you can calculate your password hash:
+
+````
+echo -n a929d3a47ee0c151fcf2cfde9efabf605bb0f999c672cf5bd0816c303fd6f778password | md5sum
+156166b575d6074b82f7f6c8453b81b8
+````
+
+*NOTE: The values shown above is wrong on purpose, make your own correct ones*
 
 Contact?
 --------
