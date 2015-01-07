@@ -118,8 +118,9 @@
     $(document).ready(function() {
       $('#point_date').datepicker({
         format: 'yyyy-mm-dd',
-        todayHighlight: true,
-        autoclose: true
+        todayHighlight: false,
+        autoclose: true,
+        clearBtn: true,
       });
 
       map = new GMaps({
