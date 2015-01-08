@@ -45,7 +45,11 @@
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Views <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
                 <% @config[:views].sort_by{|k, v| v[:description]}.each do |k, v| %>
-                  <li><a href="/view/<%= k %>"><%= v[:description] %></a></li>
+                  <% if @js_map_update %>
+                    <li><a onclick="javascript:setMapCoordinates(<%= v[:lat] %>, <%= v[:lon] %>, <%= v[:zoom] %>); window.history.replaceState('x', 'Title', '/view/<%= k %>');"><%= v[:description] %></a></li>
+                  <% else %>
+                    <li><a href="/view/<%= k %>"><%= v[:description] %></a></li>
+                  <% end %>
                 <% end %>
               </ul>
             </li>
