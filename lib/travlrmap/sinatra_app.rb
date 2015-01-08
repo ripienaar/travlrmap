@@ -4,6 +4,7 @@ module Travlrmap
       @config = config
       @map = @config[:map]
       @types = @config[:types]
+      @js_map_update = true
 
       raise "The constant APPROOT should be set in config.ru to the directory your webserver is serving from" unless defined?(APPROOT)
       raise "The directory %s set in APPROOT does not exist" % APPROOT unless File.directory?(APPROOT)
@@ -74,6 +75,7 @@ module Travlrmap
       @street_view_control = @map[:street_view_control].nil? ? false : @map[:street_view_control]
       @overview_control = @map[:overview_control].nil? ? false : @map[:overview_control]
       @pan_control = @map[:pan_control].nil? ? true : @map[:pan_control]
+      @js_map_update = true
     end
 
     def to_json
@@ -134,6 +136,8 @@ module Travlrmap
 
     get '/geocode' do
       protected!
+
+      @js_map_update = false
 
       erb :geolocate
     end

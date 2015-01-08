@@ -20,6 +20,11 @@
       map.addMarkers(markers_data);
     }
 
+    function setMapCoordinates(lat, lng, zoom) {
+      map.setCenter(lat, lng);
+      map.setZoom(zoom);
+    }
+
     $(document).ready(function(){
       infoWindow = new google.maps.InfoWindow({});
       map = new GMaps({
