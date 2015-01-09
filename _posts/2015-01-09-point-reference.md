@@ -12,8 +12,8 @@ Points are stored in YAML files, here's a sample of a file with 1 point in it:
 :points:
 - :type: :visit
   :lon: -71.046524
-  :title: Boston
   :lat: 42.363871
+  :title: Boston
   :country: United States
   :comment: Sample Data
   :href: http://en.wikipedia.org/wiki/Boston
@@ -27,3 +27,18 @@ You can create these by hand but the easiest is to use the included geocoder whi
 The geocoder supports simple searches or you can right click anywhere on the map.  It will fill in some information about the place gathered from Googles API, give you a chance to pick the type of visit and fill in various fields.
 
 Press ```Preview``` and the popup will show you how your point will look when clicked as well as the YAML ready to paste into the points file.
+
+### Reference
+
+Key        |Description
+-----------|-----------
+:type:     | The visit type, has to match one defined in the config file, leading ```:``` is important.
+:lon:      | The longitude
+:lat:      | The Latitude
+:title:    | Short title of the point
+:country:  | Which country it is in
+:comment:  | A comment for your point which may include basic HTML like bolding etc
+:href:     | An optional link to further information to associate with the point
+:linkimg:  | An optional image to show instead of the default placeholder text for the href
+:linktext: | Optional text to use for the link, can combine with the image
+:date:     | The date of this visit, dddd-mm-yy format
