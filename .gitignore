@@ -1,4 +1,3 @@
 *.sw?
-_site
-_pages
 .ruby-version
+_pages
