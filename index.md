@@ -15,7 +15,7 @@ My own travels built using this software can be seen [here](http://travels.devco
 
 Follow the links to the left to learn how to install, configure and add points.
 
-![Preview](/travlrmap-preview.png)
+![Preview](travlrmap-preview.png)
 
 ### Features
 
