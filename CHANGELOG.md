@@ -1,5 +1,6 @@
 #### 1.0.0
   * Instead of forcing full page reloads to change view use javascript when possible
+  * Add an /about page
 
 #### 0.0.18
   * Auto close the date picker once a day has been selected #3

@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Travlrmap version <%= Travlmap::VERSION %>">
+    <meta name="description" content="Travlrmap version <%= Travlrmap::VERSION %>">
     <meta name="author" content="R.I.Pienaar <rip@devco.net>">
     <link rel="icon" href="/favicon.ico">
 
@@ -54,11 +54,12 @@
               </ul>
             </li>
           </ul>
-          <% if @map[:show_geocode_link] %>
           <ul class="nav navbar-nav navbar-right">
+          <% if @map[:show_geocode_link] %>
             <li><a href="/geocode">Geocode</a></li>
-          </ul>
           <% end %>
+            <li><a href="/about">About</a></li>
+          </ul>
         </div>
       </div>
     </nav>
