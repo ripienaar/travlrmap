@@ -23,4 +23,4 @@ Points have a ```:type:``` property, you can define your own types and icons to 
 
 A number of markers in many colors and 3 sizes are [included in the Gem](https://github.com/ripienaar/travlrmap/tree/master/public/markers).
 
-You can provide your own by placing them in ```images``` in your repo and linking to them here.
+You can provide your own by placing them in ```images``` in your repo and linking to them here. You can use online services like [Google maps markers](http://www.googlemapsmarkers.com/) and link directly to them. The ones provided were made using Googles chart API using [this script](https://github.com/ripienaar/travlrmap/blob/d9cba39011256437715d64fc4d1fa3c76c09cfdf/scripts/generate-markers.rb).
