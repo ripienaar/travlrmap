@@ -1,7 +1,7 @@
 ---
 layout: page
 title: "Point Reference"
-category: doc
+category: ref
 date: 2015-01-09 18:10:54
 ---
 
