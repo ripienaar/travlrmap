@@ -1,4 +1,5 @@
 #### 1.0.0
+  * Support tracking visits using Google Analytics
   * Instead of forcing full page reloads to change view use javascript when possible
 
 #### 0.0.18

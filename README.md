@@ -141,6 +141,9 @@ These images have to be square sized and if you tweak the sizes you should speci
 By default a ```geocode``` link is shown in the navbar that takes the user to a page allowing them to make
 a new point, this can be disabled using this option
 
+#### :google_analytics_id:
+If you'd like to track visits to your site using Google Analytics fill in your ID like ```UA-99999999-9``` here
+
 ### :views: Section
 
 Custom views to show pre-decided parts of your map.  You should configure at least

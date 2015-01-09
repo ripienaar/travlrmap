@@ -19,6 +19,10 @@
   :cluster_image_sizes: [25, 27, 31, 37, 43]
   :show_geocode_link: true
   :authenticate: false
+  #:admin_user: admin
+  #:admin_salt: d34fda332c9a0f8997d33db8172b67b1a319fd79d108568aa4fbdb2b
+  #:admin_hash: 267d09bb203ec5c9a20eb7dbc1a
+  #:google_analytics_id: UA-99999999-9
 
 :views:
   :default:
