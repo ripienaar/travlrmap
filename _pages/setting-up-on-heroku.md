@@ -1,0 +1,1 @@
+/home/rip/work/github/travlrmap-site/_posts/2015-01-09-setting-up-on-heroku.md
