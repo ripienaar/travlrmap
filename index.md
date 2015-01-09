@@ -15,3 +15,15 @@ My own travels built using this software can be seen [here](http://travels.devco
 
 Follow the links to the left to learn how to install, configure and add points.
 
+### Features
+
+  * A menu of pre-defined views so you can draw attention to a certain area of the map
+  * Points can be catagorized by type of visit like places you've lived, visited or transited through.  Each with their own icon.
+  * Points can have urls, text, images and dates associated with them
+  * Point clustering that combines many points into one when zoomed out with extensive configuration options
+  * Several sets of colored icons for point types and clusters
+  * A web based tool to help you construct the YAML snippets needed using search
+  * Optional authentication around the geocoder
+  * Google Analytics support
+  * Export to KML for viewing in tools like Google Earth
+  * Full control over the Google Map like enabling or disabling the street view options
