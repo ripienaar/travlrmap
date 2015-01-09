@@ -1,3 +1,3 @@
-module Travlmap
+module Travlrmap
   VERSION = "0.0.17"
 end

@@ -4,7 +4,7 @@ module Travlrmap
       @config = config
       @map = @config[:map]
       @types = @config[:types]
-      @js_map_update = true
+      @js_map_update = false
 
       raise "The constant APPROOT should be set in config.ru to the directory your webserver is serving from" unless defined?(APPROOT)
       raise "The directory %s set in APPROOT does not exist" % APPROOT unless File.directory?(APPROOT)
@@ -134,10 +134,12 @@ module Travlrmap
       erb :index
     end
 
+    get '/about' do
+      erb :about
+    end
+
     get '/geocode' do
       protected!
-
-      @js_map_update = false
 
       erb :geolocate
     end

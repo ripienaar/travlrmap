@@ -4,7 +4,7 @@ require 'travlrmap/version'
 
 Gem::Specification::new do |spec|
   spec.name = "travlrmap"
-  spec.version = Travlmap::VERSION
+  spec.version = Travlrmap::VERSION
   spec.platform = Gem::Platform::RUBY
   spec.summary = "travlrmap"
   spec.description = "description: Sinatra based map builder"
