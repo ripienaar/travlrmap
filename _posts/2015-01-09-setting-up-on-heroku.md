@@ -21,7 +21,7 @@ The Gemfile just lists ```travlrmap``` as a dependency:
 ```ruby
 source 'http://rubygems.org'
 
-gem 'travlrmap', '0.0.17'
+gem 'travlrmap', '1.0.0'
 ```
 
 Now run bunlder to create the ```Gemfile.lock```
@@ -41,7 +41,7 @@ Using rack-protection (1.5.3)
 Using ruby_kml (0.1.7)
 Using tilt (1.4.1)
 Using sinatra (1.4.5)
-Using travlrmap (0.0.17)
+Using travlrmap (1.0.0)
 Your bundle is updated! Use `bundle show [gemname]` to see where a bundled gem is installed.
 ```
 
