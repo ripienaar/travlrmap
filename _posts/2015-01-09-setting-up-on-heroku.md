@@ -5,8 +5,6 @@ category: doc
 date: 2015-01-09 17:50:11
 ---
 
-### Overview
-
 The app is distributed as a [RubyGem](http://rubygems.org/gems/travlrmap) so to host your own either on a PaaS or locally you only need config file, points and a ```Gemfile```.
 
 The files for a fully functional [demo instance](https://github.com/ripienaar/travlrmap-demo) of the site can be seen [at gitHub](https://github.com/ripienaar/travlrmap-demo), this demo site is hosted at Heroku on their free single dynamo option.
@@ -15,7 +13,7 @@ Below are basic details to get going, but you can just clone the ```ripienaar/tr
 
 if you choose to make the files below, just check them all in to git and either hook Heroku up to your GitHub or use their Git based deploy process.
 
-#### Create a ```Gemfile``` and ```Gemfile.lock```
+### Create a ```Gemfile``` and ```Gemfile.lock```
 
 The Gemfile just lists ```travlrmap``` as a dependency:
 
@@ -46,7 +44,7 @@ Using travlrmap (0.0.17)
 Your bundle is updated! Use `bundle show [gemname]` to see where a bundled gem is installed.
 ```
 
-#### Create a ```config.ru```
+### Create a ```config.ru```
 
 The ```config.ru``` is the main ruby file that the webserver reads, you can use the one here without any modification:
 
@@ -61,13 +59,15 @@ config = YAML.load_file(File.join(APPROOT, "config", "travlrmap.yaml"))
 run Travlrmap::SinatraApp.new(config)
 ```
 
-#### Create config files and points
+### Create config files and points
 
 In the main GitHub repo you'll find [some config files](https://github.com/ripienaar/travlrmap/tree/master/config) copy them to your project in a directory named ```config``` and rename them all to end in ```.yaml```.
 
 You can edit the ```travlrmap.yaml``` but generally it shoulld get you something up and running as is.
 
-#### Images
+Points are in YAML files referenced from the ```travlrmap.yaml``` file, the demo includes 2 point files with a few functional points to work from.
+
+### Images
 
 If you have any images you wish to store here like thumbnails for use in points when creating links to Flickr or somewhere you can make a directory called ```images``` but this is optional.
 
