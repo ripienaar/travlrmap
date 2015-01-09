@@ -15,8 +15,11 @@ My own travels built using this software can be seen [here](http://travels.devco
 
 Follow the links to the left to learn how to install, configure and add points.
 
+![Preview](/travlrmap-preview.png)
+
 ### Features
 
+  * Responsive design that works on mobile and PC
   * A menu of pre-defined views so you can draw attention to a certain area of the map
   * Points can be catagorized by type of visit like places you've lived, visited or transited through.  Each with their own icon.
   * Points can have urls, text, images and dates associated with them
