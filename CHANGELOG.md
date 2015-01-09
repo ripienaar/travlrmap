@@ -2,6 +2,7 @@
   * Support tracking visits using Google Analytics (#10)
   * Instead of forcing full page reloads to change view use javascript when possible (#6)
   * Add an /about page (#9)
+  * Add github pages based documentation at https://ripienaar.github.io/travlrmap/ (#8)
 
 #### 0.0.18
   * Auto close the date picker once a day has been selected (#3)
