@@ -30,7 +30,7 @@ Press ```Preview``` and the popup will show you how your point will look when cl
 
 ### Reference
 
-Today these are the significant fields but you're welcome to add more if you'd like to track some additional information about a point.  The site will just ignore these additional fields.
+Today these are the significant fields but you're welcome to add more if you'd like to track some additional information about a point.  The site will just ignore these additional fields but if you do add more it's best to name them like ```_your_item``` to avoid future issues if the site does get more features, we'll never use keys that start with a ```_``` for our needs.
 
 Key        |Description
 -----------|-----------
