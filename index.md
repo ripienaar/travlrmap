@@ -24,8 +24,8 @@ Follow the links to the left to learn how to install, configure and add points.
   * Points can be catagorized by type of visit like places you've lived, visited or transited through.  Each with their own icon.
   * Points can have urls, text, images and dates associated with them
   * Point clustering that combines many points into one when zoomed out with extensive configuration options
-  * Several sets of colored icons for point types and clusters
-  * A web based tool to help you construct the YAML snippets needed using search
+  * Several sets of colored icons for point types and clusters.  Ability to add your own.
+  * A web based tool to help you visually construct the YAML snippets needed using search
   * Optional authentication around the geocoder
   * Google Analytics support
   * Export to KML for viewing in tools like Google Earth
