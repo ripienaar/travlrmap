@@ -30,6 +30,8 @@ Press ```Preview``` and the popup will show you how your point will look when cl
 
 ### Reference
 
+Today these are the significant fields but you're welcome to add more if you'd like to track some additional information about a point.  The site will just ignore these additional fields.
+
 Key        |Description
 -----------|-----------
 :type:     | The visit type, has to match one defined in the config file, leading ```:``` is important.
@@ -42,3 +44,9 @@ Key        |Description
 :linkimg:  | An optional image to show instead of the default placeholder text for the href
 :linktext: | Optional text to use for the link, can combine with the image
 :date:     | The date of this visit, dddd-mm-yy format
+
+
+### Format conversions
+
+You can browse to ```/points/kml``` and ```/points/json``` to get these points returned in either KML or JSON formats for processing into other tools.
+
