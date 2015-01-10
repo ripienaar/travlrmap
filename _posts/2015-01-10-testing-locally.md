@@ -3,6 +3,7 @@ layout: page
 title: "Testing locally"
 category: doc
 date: 2015-01-10 11:37:43
+order: 1
 ---
 
 You'd usually [host on Heroku](http://ripienaar.github.io/travlrmap/doc/setting-up-on-heroku.html) but when first getting the hang of things it's handy to test locally, especially while making look and feel changes or testing a new release of the Gem.
