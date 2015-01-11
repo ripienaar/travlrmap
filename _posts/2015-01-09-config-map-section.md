@@ -64,6 +64,22 @@ If you have just one file full of points you can use a shorthand:
   :data: points.yaml
 ```
 
+As of version ```1.1.0``` you can also load all YAML files in a directory as if they are points:
+
+```YAML
+  :data: travels
+```
+
+This will load ```config/travels/*.yaml``` which should all be point files.
+
+Additionally as of version ```1.1.0``` if you have data sets defined you can designate a certain data set as default:
+
+```YAML
+  :data: :travels
+```
+
+Which requires you to have a data set called ```:travels``` defined.
+
 ### Map size and controls
 
 On the front page you can control how much of the space the map will take, the ```width``` and ```height``` options just controls the size of the div.  You'll probably never need to change this.
