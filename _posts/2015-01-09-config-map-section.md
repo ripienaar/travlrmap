@@ -105,6 +105,18 @@ But if you wanted to use the ```m1.png``` ones change ```:cluster_image_path:```
 
 You can create your own icons to match your look and feel without having to edit the gem supplied files. I create the ones included [with this script](https://github.com/ripienaar/travlrmap/blob/d9cba39011256437715d64fc4d1fa3c76c09cfdf/scripts/generate-markercluster-icons.rb).  If you tweak the sizes of the icons you should update ```:cluster_image_sizes:``` accordingly, use odd numbers for the icon sizes to ensure the text is centered.  Place yours in the ```images``` directory of your git repo and adjust ```:cluster_image_path:``` to point there.
 
+### Map Types
+
+As of version ```1.1.0``` a number of 3rd party Open Streetmap based map tile sets are supported.  The demo has them all enabled, the configuration to get that behavior is:
+
+```YAML
+  :map_types: [hybrid, roadmap, satellite, terrain, osm, watercolor, toner, darkmatter, positron, mapquest]
+  :default_map_type: roadmap
+```
+
+For your own just list the ones you like and set the default.
+
+
 ### Geocode helper page
 
 You can access the geocode helper page on ```/geocode```, by default a link to this is shown on your page.  You can hide this link using ```:show_geocode_link:```.
