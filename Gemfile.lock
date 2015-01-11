@@ -2,7 +2,6 @@ GEM
   remote: http://rubygems.org/
   specs:
     builder (3.2.2)
-    gli (2.12.2)
     httparty (0.11.0)
       multi_json (~> 1.0)
       multi_xml (>= 0.5.2)
@@ -26,7 +25,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  gli
   httparty (= 0.11.0)
   json
   nokogiri (= 1.5.2)

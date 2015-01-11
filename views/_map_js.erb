@@ -32,6 +32,9 @@
         zoom: <%= @map_view[:zoom] %>,
         lat: <%= @map_view[:lat] %>,
         lng: <%= @map_view[:lon] %>,
+        mapTypeControlOptions: {
+          mapTypeIds : <%= @map[:map_types].inspect %>
+        },
         <% if @map[:cluster] %>
           markerClusterer: function(map) {
             options = {
@@ -49,7 +52,14 @@
             return new MarkerClusterer(map, [], options);
           }
         <% end %>
+
       });
+
+      <%= erb :"_map_types", :layout => false, :locals => {:map => @map} %>
+
+      <% if Array(@map[:map_types]).include?(@map[:default_map_type]) %>
+      map.setMapTypeId("<%= @map[:default_map_type] %>");
+      <% end %>
 
       points = $.getJSON("/points/json");
       points.done(addPoints);

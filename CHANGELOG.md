@@ -1,3 +1,6 @@
+#### 1.1.0
+  * Support various 3rd party tile sets (#13)
+
 #### 1.0.0
   * Support tracking visits using Google Analytics (#10)
   * Instead of forcing full page reloads to change view use javascript when possible (#6)
