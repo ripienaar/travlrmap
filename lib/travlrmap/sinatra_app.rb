@@ -9,6 +9,10 @@ module Travlrmap
       raise "The constant APPROOT should be set in config.ru to the directory your webserver is serving from" unless defined?(APPROOT)
       raise "The directory %s set in APPROOT does not exist" % APPROOT unless File.directory?(APPROOT)
 
+
+      @map[:map_types] = ["hybrid", "roadmap", "satellite", "terrain", "osm"] unless @map[:map_types]
+      @map[:default_map_type] = "roadmap" unless @map[:default_map_type]
+
       load_map
 
       super()

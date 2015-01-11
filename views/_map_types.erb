@@ -1,0 +1,60 @@
+<% if Array(@map[:map_types]).include?("watercolor") %>
+map.addMapType("watercolor", {
+  getTileUrl: function(coord, zoom) {
+    return "http://a.tile.stamen.com/watercolor/" + zoom + "/" + coord.x + "/" + coord.y + ".png";
+  },
+  tileSize: new google.maps.Size(256, 256),
+  name: "Water Color",
+  maxZoom: 18
+});
+<% end %>
+<% if Array(@map[:map_types]).include?("toner") %>
+map.addMapType("toner", {
+  getTileUrl: function(coord, zoom) {
+    return "http://a.tile.stamen.com/toner/" + zoom + "/" + coord.x + "/" + coord.y + ".png";
+  },
+  tileSize: new google.maps.Size(256, 256),
+  name: "Toner",
+  maxZoom: 18
+});
+<% end %>
+<% if Array(@map[:map_types]).include?("darkmatter") %>
+map.addMapType("darkmatter", {
+  getTileUrl: function(coord, zoom) {
+    return "http://a.basemaps.cartocdn.com/dark_all/" + zoom + "/" + coord.x + "/" + coord.y + ".png";
+  },
+  tileSize: new google.maps.Size(256, 256),
+  name: "Dark Matter",
+  maxZoom: 18
+});
+<% end %>
+<% if Array(@map[:map_types]).include?("positron") %>
+map.addMapType("positron", {
+  getTileUrl: function(coord, zoom) {
+    return "http://a.basemaps.cartocdn.com/light_all/" + zoom + "/" + coord.x + "/" + coord.y + ".png";
+  },
+  tileSize: new google.maps.Size(256, 256),
+  name: "Positron",
+  maxZoom: 18
+});
+<% end %>
+<% if Array(@map[:map_types]).include?("mapquest") %>
+map.addMapType("mapquest", {
+  getTileUrl: function(coord, zoom) {
+    return "http://otile1.mqcdn.com/tiles/1.0.0/osm/" + zoom + "/" + coord.x + "/" + coord.y + ".png";
+  },
+  tileSize: new google.maps.Size(256, 256),
+  name: "Map Quest",
+  maxZoom: 18
+});
+<% end %>
+<% if Array(@map[:map_types]).include?("osm") %>
+map.addMapType("osm", {
+  getTileUrl: function(coord, zoom) {
+    return "http://tile.openstreetmap.org/" + zoom + "/" + coord.x + "/" + coord.y + ".png";
+  },
+  tileSize: new google.maps.Size(256, 256),
+  name: "OpenStreetMap",
+  maxZoom: 18
+});
+<% end %>
