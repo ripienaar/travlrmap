@@ -1,5 +1,6 @@
 #### 1.1.0
   * Support various 3rd party tile sets (#13)
+  * Support map sets (#14)
 
 #### 1.0.0
   * Support tracking visits using Google Analytics (#10)

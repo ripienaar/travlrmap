@@ -1,3 +1,5 @@
 config/*.yaml
+config/travels
+config/wishlist
 pkg
 images
