@@ -61,7 +61,11 @@
       map.setMapTypeId("<%= @map[:default_map_type] %>");
       <% end %>
 
-      points = $.getJSON("/points/json");
+      <% if @active_set %>
+        points = $.getJSON("/points/json/<%= @active_set %>");
+      <% else %>
+        points = $.getJSON("/points/json");
+      <% end %>
       points.done(addPoints);
     });
 </script>

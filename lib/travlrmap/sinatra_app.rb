@@ -4,16 +4,14 @@ module Travlrmap
       @config = config
       @map = @config[:map]
       @types = @config[:types]
+      @sets = @config[:sets]
       @js_map_update = false
 
       raise "The constant APPROOT should be set in config.ru to the directory your webserver is serving from" unless defined?(APPROOT)
       raise "The directory %s set in APPROOT does not exist" % APPROOT unless File.directory?(APPROOT)
 
-
       @map[:map_types] = ["hybrid", "roadmap", "satellite", "terrain", "osm"] unless @map[:map_types]
       @map[:default_map_type] = "roadmap" unless @map[:default_map_type]
-
-      load_map
 
       super()
     end
@@ -61,18 +59,36 @@ module Travlrmap
       "travlrmap-%s-style" % type
     end
 
-    def load_map
+    def load_map(set=nil)
       @points = []
 
-      Array(@config[:map][:data]).each do |map|
-        point_file = File.join(File.join(APPROOT, "config", map))
-        data = YAML.load_file(point_file)
+      if set
+        files = Array(@config[:sets][set][:data])
+      else
+        files = Array(@config[:map][:data])
+      end
 
-        @points.concat(data[:points])
+      files.each do |map|
+        if map.is_a?(Symbol)
+          @points.concat(load_map(map))
+        else
+          point_file = File.join(File.join(APPROOT, "config", map))
+
+          if File.directory?(point_file)
+            Dir.entries(point_file).grep(/\.yaml$/).each do |points|
+              file = File.join(point_file, points)
+              data = YAML.load_file(file)
+              @points.concat(data[:points])
+            end
+          else
+            data = YAML.load_file(point_file)
+            @points.concat(data[:points])
+          end
+        end
       end
     end
 
-    def set_map_vars(view)
+    def set_map_vars(view, set=nil)
       @map_view = @config[:views][view]
       @zoom_control = @map[:zoom_control].nil? ? true : @map[:zoom_control]
       @map_type_control = @map[:map_type_control].nil? ? true : @map[:map_type_control]
@@ -80,6 +96,7 @@ module Travlrmap
       @overview_control = @map[:overview_control].nil? ? false : @map[:overview_control]
       @pan_control = @map[:pan_control].nil? ? true : @map[:pan_control]
       @js_map_update = true
+      @active_set = set
     end
 
     def to_json
@@ -126,15 +143,29 @@ module Travlrmap
       kml.render
     end
 
-    get '/view/:view' do
+    get '/view/:view/?:set?' do
       params[:view] ? view = params[:view].intern : view = :default
+      params[:set] ? set = params[:set].intern : set = nil
 
-      set_map_vars(view)
+      load_map(set)
+      set_map_vars(view, set)
+
+      erb :index
+    end
+
+    get '/set/:set' do
+      params[:set] ? set = params[:set].intern : set = nil
+
+      load_map(set)
+      set_map_vars(:default, set)
+
       erb :index
     end
 
     get '/' do
+      load_map
       set_map_vars(:default)
+
       erb :index
     end
 
@@ -148,13 +179,19 @@ module Travlrmap
       erb :geolocate
     end
 
-    get '/points/kml' do
+    get '/points/kml/?:set?' do
+      params[:set] ? set = params[:set].intern : set = nil
+
       content_type :"application/vnd.google-earth.kml+xml"
+      load_map(set)
       to_kml
     end
 
-    get '/points/json' do
+    get '/points/json/?:set?' do
+      params[:set] ? set = params[:set].intern : set = nil
+
       content_type :"application/json"
+      load_map(set)
       to_json
     end
 
