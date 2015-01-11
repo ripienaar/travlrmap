@@ -2,9 +2,10 @@ module Travlrmap
   class SinatraApp < ::Sinatra::Base
     def initialize(config)
       @config = config
+      @config[:sets] ||= {}
       @map = @config[:map]
       @types = @config[:types]
-      @sets = @config[:sets]
+      @sets = @config[:sets] || {}
       @js_map_update = false
 
       raise "The constant APPROOT should be set in config.ru to the directory your webserver is serving from" unless defined?(APPROOT)

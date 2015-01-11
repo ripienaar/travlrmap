@@ -54,6 +54,7 @@
                 <% end %>
               </ul>
             </li>
+            <% if !@config[:sets].empty? %>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Data Sets <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
@@ -62,6 +63,7 @@
                 <% end %>
               </ul>
             </li>
+            <% end %>
           </ul>
           <ul class="nav navbar-nav navbar-right">
           <% if @map[:show_geocode_link] %>
