@@ -1,5 +1,6 @@
 #### 1.2.0
   * Autoselect the yaml text in the geocoder preview when clicked on (#17)
+  * Support saving points (#1)
 
 #### 1.1.0
   * Support various 3rd party tile sets (#13)

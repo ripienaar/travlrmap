@@ -144,6 +144,24 @@ module Travlrmap
       kml.render
     end
 
+    def point_from_json(json)
+      data = JSON.parse(json)
+
+      point = {}
+
+      ["title", "comment", "country", "date", "href", "linktext", "linkimg", "lon", "lat"].each do |i|
+        if data[i].is_a?(String)
+          point[i.intern] = data[i] unless data[i].empty?
+        else
+          point[i.intern] = data[i]
+        end
+      end
+
+      point[:type] = data["type"].intern
+
+      point
+    end
+
     get '/view/:view/?:set?' do
       params[:view] ? view = params[:view].intern : view = :default
       params[:set] ? set = params[:set].intern : set = nil
@@ -196,24 +214,55 @@ module Travlrmap
       to_json
     end
 
+    post '/points/save' do
+      content_type :"application/json"
+
+      if !@map[:authenticate]
+        halt(403, "Can only save data if authentication is enabled")
+      end
+
+      protected!
+
+      halt(403, "No :save_to location configured") unless @map[:save_to]
+
+      save_file = File.join(APPROOT, "config", "%s.yaml" % @map[:save_to])
+
+      halt(403, ":save_to location is not writable") unless File.writable?(save_file)
+
+      points = YAML.load(File.read(save_file))
+
+      halt(403, "Failed to load :save_to location as valid YAML") unless points
+      halt(403, "Failed to load :save_to location as valid points file") unless points[:points]
+
+      begin
+        new_point = point_from_json(request.body.read)
+
+        index = points[:points].find_index{|p| p[:title] == new_point[:title]}
+
+        if index
+          points[:points][index] = new_point
+          result = '{"status":"success","message":"%s has been updated"}' % h(new_point[:title])
+        else
+          points[:points] << new_point
+          result = '{"status":"success","message":"%s has been saved"}' % h(new_point[:title])
+        end
+
+        File.open(save_file, "w") do |f|
+          f.puts YAML.dump(points)
+        end
+      rescue Exception
+        result = '{"status":"message": "Failed to save point: %s"}' % h($!.to_s)
+      end
+
+      result
+    end
+
     post '/points/validate' do
       protected!
 
       content_type :"application/json"
 
-      data = JSON.parse(request.body.read)
-
-      point = {}
-
-      ["title", "comment", "country", "date", "href", "linktext", "linkimg", "lon", "lat"].each do |i|
-        if data[i].is_a?(String)
-          point[i.intern] = data[i] unless data[i].empty?
-        else
-          point[i.intern] = data[i]
-        end
-      end
-
-      point[:type] = data["type"].intern
+      point = point_from_json(request.body.read)
 
       result = {"yaml" => YAML.dump([point]).lines.to_a[1..-1].join,
                 "html" => erb(:"_point_comment", :layout => false, :locals => {:point => point})}
