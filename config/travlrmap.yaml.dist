@@ -26,6 +26,7 @@
   #:admin_salt: d34fda332c9a0f8997d33db8172b67b1a319fd79d108568aa4fbdb2b
   #:admin_hash: 267d09bb203ec5c9a20eb7dbc1a
   #:google_analytics_id: UA-99999999-9
+  #:save_to: incoming
 
 :views:
   :default:
