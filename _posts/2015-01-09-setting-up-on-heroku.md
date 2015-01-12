@@ -50,6 +50,8 @@ Your bundle is updated! Use `bundle show [gemname]` to see where a bundled gem i
 The ```config.ru``` is the main ruby file that the webserver reads, you can use the one here without any modification:
 
 ```ruby
+require "bundler"
+
 Bundler.require(:default)
 
 set :run, false
@@ -72,4 +74,6 @@ Points are in YAML files referenced from the ```travlrmap.yaml``` file, the demo
 
 If you have any images you wish to store here like thumbnails for use in points when creating links to Flickr or somewhere you can make a directory called ```images``` but this is optional.
 
+### ```public``` and ```tmp```
 
+Under passenger you might need to create a ```public``` and ```tmp``` directory, your ```DocumentRoot``` would be set to the ```public``` directory.
