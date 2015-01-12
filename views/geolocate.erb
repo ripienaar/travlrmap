@@ -114,6 +114,23 @@
       }
     }
 
+    function selectText(element) {
+      var doc = document;
+      var text = doc.getElementById(element);
+
+      if (doc.body.createTextRange) { // ms
+        var range = doc.body.createTextRange();
+        range.moveToElementText(text);
+        range.select();
+      } else if (window.getSelection) { // moz, opera, webkit
+        var selection = window.getSelection();
+        var range = doc.createRange();
+        range.selectNodeContents(text);
+        selection.removeAllRanges();
+        selection.addRange(range);
+      }
+    }
+
     $(document).ready(function() {
       $('#point_date').datepicker({
         format: 'yyyy-mm-dd',
@@ -149,6 +166,11 @@
           }
         });
       });
+
+      document.getElementById('preview_yaml').style.cursor = 'pointer';
+      document.getElementById('preview_yaml').onclick = function() {
+        selectText('preview_yaml');
+      };
 
       $('#point_info').submit(function(e) {
         e.preventDefault();
