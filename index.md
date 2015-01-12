@@ -30,3 +30,5 @@ Follow the links to the left to learn how to install, configure and add points.
   * Google Analytics support
   * Export to KML for viewing in tools like Google Earth
   * Full control over the Google Map like enabling or disabling the street view options
+  * Support for 3rd party map tile sets like Map Quest and Open Streetmap
+  * Support multiple datasets to let you track places you've been and places you'd like to go
