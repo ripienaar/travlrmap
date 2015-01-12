@@ -16,7 +16,7 @@ You then have to designate a file as the incoming data file:
   :save_to: travels/incoming
 ```
 
-To then enable writing you have to create a file ```config/travels/incoming.yaml``` with the following content:
+To then enable writing you have to create a webserver writable file ```config/travels/incoming.yaml``` with the following content:
 
 ```YAML
 ---
