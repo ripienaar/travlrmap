@@ -157,7 +157,7 @@ $ openssl rand 32 -hex
 d34fda332a0f8997d33db8172b67b1a319fd79d108568aa4fbdb2b
 ```
 
-Computer your password by getting the md5 of the salt plus your password:
+Compute your password by getting the md5 of the salt plus your password:
 
 ```bash
 $ echo -n d34fda332a0f8997d33db8172b67b1a319fd79d108568aa4fbdb2bpassword | md5sum
