@@ -242,7 +242,9 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+<% if @map[:authenticate] %>
         <button type="button" class="btn btn-primary" onclick="savePoint()" data-dismiss="modal">Save</button>
+<% end %>
       </div>
     </div>
   </div>
