@@ -140,6 +140,7 @@ You can access the geocode helper page on ```/geocode```, by default a link to t
 You can add authentication to this page - which will also be used later when we enable saving of data points. To do this you need to do a few things on a unix shell:
 
 ```YAML
+  :authenticate: true
   :admin_user: admin
   :admin_salt: d34fda332a0f8997d33db8172b67b1a319fd79d108568aa4fbdb2b
   :admin_hash: 267d09bb203ec5c9a20eb7dbc1a
