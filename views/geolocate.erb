@@ -131,6 +131,30 @@
       }
     }
 
+    function pointFromForm() {
+      var point = {};
+      point.type = document.getElementById('point_type').value
+      point.title = document.getElementById('point_title').value
+      point.comment = document.getElementById('point_comment').value
+      point.country = document.getElementById('point_country').value
+      point.date = document.getElementById('point_date').value
+      point.href = document.getElementById('point_href').value
+      point.linktext = document.getElementById('point_linktext').value
+      point.linkimg = document.getElementById('point_linkimg').value
+      point.lon = marker.position.lng();
+      point.lat = marker.position.lat();
+
+      return point;
+    }
+
+    function savePoint() {
+      var point = pointFromForm();
+
+      $.post("/points/save", JSON.stringify(point), function(data) {
+        alert(data.message);
+      });
+    }
+
     $(document).ready(function() {
       $('#point_date').datepicker({
         format: 'yyyy-mm-dd',
@@ -175,17 +199,7 @@
       $('#point_info').submit(function(e) {
         e.preventDefault();
 
-        var point = {};
-        point.type = document.getElementById('point_type').value
-        point.title = document.getElementById('point_title').value
-        point.comment = document.getElementById('point_comment').value
-        point.country = document.getElementById('point_country').value
-        point.date = document.getElementById('point_date').value
-        point.href = document.getElementById('point_href').value
-        point.linktext = document.getElementById('point_linktext').value
-        point.linkimg = document.getElementById('point_linkimg').value
-        point.lon = marker.position.lng();
-        point.lat = marker.position.lat();
+        var point = pointFromForm();
 
         document.getElementById('preview_html').innerHTML = "Validating point and fetching preview...";
         document.getElementById('preview_yaml').innerHTML = "";
@@ -228,6 +242,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" onclick="savePoint()" data-dismiss="modal">Save</button>
       </div>
     </div>
   </div>
