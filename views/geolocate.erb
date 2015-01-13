@@ -3,12 +3,16 @@
     <div class="col-md-9">
       <input type="text" class="form-control" id="location" autofocus>
     </div>
-    <div class="col-md-1">
+    <div class="col-md-3">
       <button type="submit" class="btn btn-primary">Search</button>
+      <button type="button" id="my_location" class="btn btn-primary">My Location</button>
     </div>
   </form>
 </div>
 <div class="row"><div class="col-md-12">&nbsp;</div></div>
+<div class="row">
+  <div class="col-md-9"><center>Perform a search to place a marker or right click to place one anywhere.</center></div>
+</div>
 <div class="row" style="height: 80%">
   <div class="col-md-9" style="height: 100%">
     <div class="map" id="main_map"> </div>
@@ -48,9 +52,6 @@
       </div>
     </form>
   </div>
-</div>
-<div class="row">
-  <div class="col-md-9"><center>Perform a search to place a marker or right click to place one anywhere.</center></div>
 </div>
 
 <script src="/moment.js"></script>
@@ -155,6 +156,22 @@
       });
     }
 
+    function updateWithCurrentPosition(pos) {
+      map.removeMarkers();
+
+      GMaps.geocode({
+        lat: pos.coords.latitude,
+        lng: pos.coords.longitude,
+        callback: function(results, status) {
+          updateForm(results, status, true)
+        }
+      });
+    }
+
+    function errorGettingCurrentPos(error) {
+      alert("Could not get current position: " + err.message);
+    }
+
     $(document).ready(function() {
       $('#point_date').datepicker({
         format: 'yyyy-mm-dd',
@@ -194,6 +211,14 @@
       document.getElementById('preview_yaml').style.cursor = 'pointer';
       document.getElementById('preview_yaml').onclick = function() {
         selectText('preview_yaml');
+      };
+
+      document.getElementById('my_location').onclick = function() {
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(updateWithCurrentPosition, errorGettingCurrentPos);
+        } else {
+          alert("Optaining your position is not supported with this browser");
+        }
       };
 
       $('#point_info').submit(function(e) {
