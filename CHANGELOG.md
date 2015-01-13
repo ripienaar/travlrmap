@@ -1,3 +1,6 @@
+### 1.3.0
+  * Improve mobile rendering of the geocoder and support geocoding current position (#5)
+
 #### 1.2.0
   * Autoselect the yaml text in the geocoder preview when clicked on (#17)
   * Support saving points (#1)
