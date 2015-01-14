@@ -16,7 +16,7 @@
        <%= h point[:linktext] %>
 <%   end %>
 <% elsif point[:href] %>
-     Link
+     <%= domain_from_url(point[:href]) %>
 <% end %>
 <% if point[:href]  %>
      </a>

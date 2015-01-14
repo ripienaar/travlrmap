@@ -1,6 +1,7 @@
 ### 1.3.0
   * Improve mobile rendering of the geocoder and support geocoding current position (#5)
   * Show :linkimg: and :linktext: even when no :href: is set (#21)
+  * Show the domain a link points to instead of 'link' when no :linktext: is set (#24)
 
 #### 1.2.0
   * Autoselect the yaml text in the geocoder preview when clicked on (#17)
