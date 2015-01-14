@@ -7,16 +7,18 @@
 
 <% if point[:href]  %>
      <a href='<%= point[:href] %>' target='_blank'>
-<%   if point[:linkimg] || point[:linktext] %>
-<%      if point[:linkimg] %>
-          <img src='<%= point[:linkimg] %>'><br />
-<%      end %>
-<%      if point[:linktext] %>
-          <%= h point[:linktext] %>
-<%      end %>
-<%   else %>
-       Link
+<% end %>
+<% if point[:linkimg] || point[:linktext] %>
+<%   if point[:linkimg] %>
+       <img src='<%= point[:linkimg] %>'><br />
 <%   end %>
+<%   if point[:linktext] %>
+       <%= h point[:linktext] %>
+<%   end %>
+<% elsif point[:href] %>
+     Link
+<% end %>
+<% if point[:href]  %>
      </a>
 <% end %>
 </p>
