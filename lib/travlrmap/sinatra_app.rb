@@ -26,6 +26,11 @@ module Travlrmap
 
       alias_method :h, :escape_html
 
+      def domain_from_url(url)
+        host = URI.parse(url).host.downcase
+        host.start_with?('www.') ? host[4..-1] : host
+      end
+
       def protected!
         return if authorized?
         headers['WWW-Authenticate'] = 'Basic realm="Restricted Area"'
