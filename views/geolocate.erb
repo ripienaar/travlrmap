@@ -109,7 +109,6 @@
 
         document.getElementById('point_title').value = getLocationName(results);
         document.getElementById('point_country').value = getCountry(results);
-        document.getElementById('point_date').value = moment().format("YYYY-MM-DD");
       } else {
         alert("Geocode was not successful for the following reason: " + status);
       }
