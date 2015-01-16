@@ -65,11 +65,7 @@
       var addrComponents = results[0].address_components;
 
       for (var i = 0; i < addrComponents.length; i++) {
-        if (addrComponents[i].types[0] == "point_of_interest") {
-          return addrComponents[i].long_name;
-        }
-
-        if (addrComponents[i].types[0] == "postal_town") {
+        if ($.inArray(addrComponents[i].types[0], ["establishment", "point_of_interest", "postal_town", "locality"])) {
           return addrComponents[i].long_name;
         }
       }

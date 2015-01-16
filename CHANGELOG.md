@@ -3,6 +3,7 @@
   * Show :linkimg: and :linktext: even when no :href: is set (#21)
   * Show the domain a link points to instead of 'link' when no :linktext: is set (#24)
   * Do not reset the date field after every geocode (#22)
+  * Improve name picking in the geocoder (#27)
 
 #### 1.2.0
   * Autoselect the yaml text in the geocoder preview when clicked on (#17)
