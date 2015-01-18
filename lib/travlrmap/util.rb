@@ -9,8 +9,8 @@ module Travlrmap
       host.start_with?(/(en|www)\./) ? host[4..-1] : host
     end
 
-    def self.point_from_json(json)
-      Point.new(json, @types, :json)
+    def self.point_from_json(json, types)
+      Point.new(json, types, :json)
     end
   end
 end

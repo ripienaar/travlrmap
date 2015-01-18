@@ -145,7 +145,7 @@ module Travlrmap
       halt(403, "Failed to load :save_to location as valid points file") unless points[:points]
 
       begin
-        new_point = Util.point_from_json(request.body.read)
+        new_point = Util.point_from_json(request.body.read, @types)
 
         index = points[:points].find_index{|p| p[:title] == new_point[:title]}
 
@@ -172,7 +172,7 @@ module Travlrmap
 
       content_type :"application/json"
 
-      point = Util.point_from_json(request.body.read)
+      point = Util.point_from_json(request.body.read, @types)
       point.preview.to_json
     end
 
