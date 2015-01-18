@@ -1,3 +1,6 @@
+### 1.4.0
+  * Avoid double titles in Google Earth by not putting the title in the html
+
 ### 1.3.0
   * Improve mobile rendering of the geocoder and support geocoding current position (#5)
   * Show :linkimg: and :linktext: even when no :href: is set (#21)
