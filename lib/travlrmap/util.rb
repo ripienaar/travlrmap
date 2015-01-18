@@ -6,7 +6,7 @@ module Travlrmap
 
     def self.domain_from_url(url)
       host = URI.parse(url).host.downcase
-      host.start_with?(/(en|www)\./) ? host[4..-1] : host
+      host.match(/^(en|www)\./) ? host.split(".")[1..-1].join(".") : host
     end
 
     def self.point_from_json(json, types)
