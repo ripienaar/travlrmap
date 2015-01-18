@@ -117,7 +117,7 @@ module Travlrmap
 <% end %>
 </p>
 <p>
-<font weight"-2"><%= h @types[ @point[:type] ][:description] %><% if @point[:date] %> on <%= h @point[:date] %><% end %>
+<font size"-2"><%= h @types[ @point[:type] ][:description] %><% if @point[:date] %> on <%= h @point[:date] %><% end %></font>
       EOS
     end
   end
