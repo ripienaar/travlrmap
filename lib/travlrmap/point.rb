@@ -15,6 +15,15 @@ module Travlrmap
       end
     end
 
+    def preview
+      {"yaml" => YAML.dump([self]).lines.to_a[1..-1].join,
+       "html" => self.to_html}
+    end
+
+    def type
+      @types[ self[:type] ]
+    end
+
     def h(string)
       Rack::Utils.escape_html(string)
     end

@@ -12,5 +12,6 @@ module Travlrmap
   require 'travlrmap/version'
   require 'travlrmap/util'
   require 'travlrmap/point'
+  require 'travlrmap/points'
   require 'travlrmap/sinatra_app'
 end

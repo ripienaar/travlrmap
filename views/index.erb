@@ -6,5 +6,5 @@
   <img src="<%= settings[:icon] %>">&nbsp;<%= settings[:description] %>
 <% end %>
 <br />
-<%= @points.size %> locations in <%= @points.map{|p| p[:country]}.uniq.size %> countries
+<%= @points.size %> locations in <%= @points.countries.size %> countries
 </div>
