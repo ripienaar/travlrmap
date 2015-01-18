@@ -127,41 +127,35 @@ module Travlrmap
     post '/points/save' do
       content_type :"application/json"
 
-      if !@map[:authenticate]
-        halt(403, "Can only save data if authentication is enabled")
-      end
-
       protected!
 
-      halt(403, "No :save_to location configured") unless @map[:save_to]
-
-      save_file = File.join(APPROOT, "config", "%s.yaml" % @map[:save_to])
-
-      halt(403, ":save_to location is not writable") unless File.writable?(save_file)
-
-      points = YAML.load(File.read(save_file))
-
-      halt(403, "Failed to load :save_to location as valid YAML") unless points
-      halt(403, "Failed to load :save_to location as valid points file") unless points[:points]
-
       begin
+        raise("Can only save data if authentication is enabled") unless @map[:authenticate]
+
+        raise("No :save_to location configured") unless @map[:save_to]
+
+        save_file = File.join(APPROOT, "config", "%s.yaml" % @map[:save_to])
+
+        raise(":save_to location is not writable") unless File.writable?(save_file)
+
+        points = Points.new(@types, @sets, @map)
+        points.load_points_from_file(save_file)
+
+        raise("Failed to load :save_to location as valid YAML") unless points
+
         new_point = Util.point_from_json(request.body.read, @types)
 
-        index = points[:points].find_index{|p| p[:title] == new_point[:title]}
-
-        if index
-          points[:points][index] = new_point
+        if index = points.find_title(new_point[:title])
+          points.replace!(new_point[:title], new_point)
           result = '{"status":"success","message":"%s has been updated"}' % h(new_point[:title])
         else
-          points[:points] << new_point
+          points << new_point
           result = '{"status":"success","message":"%s has been saved"}' % h(new_point[:title])
         end
 
-        File.open(save_file, "w") do |f|
-          f.puts YAML.dump(points)
-        end
+        points.save_to_file(save_file)
       rescue Exception
-        result = '{"status":"message": "Failed to save point: %s"}' % h($!.to_s)
+        result = '{"status":"message","message":"Failed to save point: %s"}' % h($!.to_s)
       end
 
       result

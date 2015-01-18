@@ -4,6 +4,36 @@ module Travlrmap
       @types = types
       @sets = sets
       @map = map
+
+      reset
+    end
+
+    def find_title(title)
+      @points.find_index do |point|
+        point[:title] == title
+      end
+    end
+
+    def replace!(title, point)
+      raise("Can only store instances of Point") unless point.is_a?(Point)
+
+      if idx = find_title(title)
+        @points[idx] = point
+      else
+        raise("No point with title %s to replace" % title)
+      end
+    end
+
+    def save_to_file(file)
+      File.open(file, "w") do |f|
+        f.puts YAML.dump(:points => @points)
+      end
+    end
+
+    def <<(point)
+      raise("Can only store instances of Point") unless point.is_a?(Point)
+
+      @points << point
     end
 
     def reset
@@ -80,6 +110,10 @@ module Travlrmap
       end.to_json
     end
 
+    def load_points_from_file(file)
+      points_from_data(load_file(file))
+    end
+
     def load_points(set=nil)
       reset
 
@@ -92,7 +126,7 @@ module Travlrmap
           if File.directory?(file)
             load_directory(file)
           else
-            points_from_data(load_file(file))
+            load_points_from_file(file)
           end
         end
       end
@@ -108,7 +142,9 @@ module Travlrmap
     end
 
     def points_from_data(data)
-      data[:points].each{|p| @points << Point.new(p, @types)}
+      data[:points].each do |point|
+        @points << Point.new(point, @types)
+      end
     end
 
     def load_directory(directory)
