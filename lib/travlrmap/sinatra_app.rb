@@ -57,32 +57,8 @@ module Travlrmap
     end
 
     def load_map(set=nil)
-      @points = []
-
-      if set
-        files = Array(@config[:sets][set][:data])
-      else
-        files = Array(@config[:map][:data])
-      end
-
-      files.each do |map|
-        if map.is_a?(Symbol)
-          @points.concat(load_map(map))
-        else
-          point_file = File.join(File.join(APPROOT, "config", map))
-
-          if File.directory?(point_file)
-            Dir.entries(point_file).grep(/\.yaml$/).each do |points|
-              file = File.join(point_file, points)
-              data = YAML.load_file(file)
-              @points.concat(data[:points].map{|p| Point.new(p, @types)})
-            end
-          else
-            data = YAML.load_file(point_file)
-            @points.concat(data[:points].map{|p| Point.new(p, @types)})
-          end
-        end
-      end
+      @points = Points.new(@types, @sets, @map)
+      @points.load_points(set)
     end
 
     def set_map_vars(view, set=nil)
@@ -94,50 +70,6 @@ module Travlrmap
       @pan_control = @map[:pan_control].nil? ? true : @map[:pan_control]
       @js_map_update = true
       @active_set = set
-    end
-
-    def to_json
-      @points.sort_by{|p| p[:country]}.map do |point|
-        p = point.to_hash
-        p[:popup_html] = point.to_html
-        p[:icon] = @types[ point[:type] ][:icon]
-        p
-      end.to_json
-    end
-
-    def to_kml
-      require 'ruby_kml'
-
-      kml = KMLFile.new
-      document = KML::Document.new(:name => "Travlrmap Data")
-      folder = KML::Folder.new(:name => "Countries")
-      folders = {}
-
-      @types.each do |k, t|
-        document.styles << KML::Style.new(
-          :id         => Util.kml_style_url(k, :type),
-          :icon_style => KML::IconStyle.new(:icon => KML::Icon.new(:href => t[:icon]))
-        )
-      end
-
-      @points.sort_by{|p| p[:country]}.each do |point|
-        unless folders[point[:country]]
-          folder.features << folders[point[:country]] = KML::Folder.new(:name => point[:country])
-        end
-
-        f = folders[point[:country]]
-
-        f.features << point.to_placemark
-      end
-
-      document.features << folder
-      kml.objects << document
-
-      kml.render
-    end
-
-    def point_from_json(json)
-      Point.new(json, @types, :json)
     end
 
     get '/view/:view/?:set?' do
@@ -181,7 +113,7 @@ module Travlrmap
 
       content_type :"application/vnd.google-earth.kml+xml"
       load_map(set)
-      to_kml
+      @points.to_kml
     end
 
     get '/points/json/?:set?' do
@@ -189,7 +121,7 @@ module Travlrmap
 
       content_type :"application/json"
       load_map(set)
-      to_json
+      @points.to_json
     end
 
     post '/points/save' do
@@ -213,7 +145,7 @@ module Travlrmap
       halt(403, "Failed to load :save_to location as valid points file") unless points[:points]
 
       begin
-        new_point = point_from_json(request.body.read)
+        new_point = Util.point_from_json(request.body.read)
 
         index = points[:points].find_index{|p| p[:title] == new_point[:title]}
 
@@ -240,12 +172,8 @@ module Travlrmap
 
       content_type :"application/json"
 
-      point = point_from_json(request.body.read)
-
-      result = {"yaml" => YAML.dump([point]).lines.to_a[1..-1].join,
-                "html" => point.to_html}
-
-      result.to_json
+      point = Util.point_from_json(request.body.read)
+      point.preview.to_json
     end
 
     get '/images/*' do
