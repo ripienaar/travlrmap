@@ -8,6 +8,10 @@ module Travlrmap
       reset
     end
 
+    def has_title?(title)
+      !!find_title(title)
+    end
+
     def find_title(title)
       @points.find_index do |point|
         point[:title] == title

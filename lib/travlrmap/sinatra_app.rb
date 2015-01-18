@@ -144,13 +144,14 @@ module Travlrmap
         raise("Failed to load :save_to location as valid YAML") unless points
 
         new_point = Util.point_from_json(request.body.read, @types)
+        title = new_point[:title]
 
-        if index = points.find_title(new_point[:title])
-          points.replace!(new_point[:title], new_point)
-          result = '{"status":"success","message":"%s has been updated"}' % h(new_point[:title])
+        if points.has_title?(title)
+          points.replace!(title, new_point)
+          result = '{"status":"success","message":"%s has been updated"}' % h(title)
         else
           points << new_point
-          result = '{"status":"success","message":"%s has been saved"}' % h(new_point[:title])
+          result = '{"status":"success","message":"%s has been saved"}' % h(title)
         end
 
         points.save_to_file(save_file)
