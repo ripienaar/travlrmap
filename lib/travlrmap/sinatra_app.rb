@@ -26,11 +26,6 @@ module Travlrmap
 
       alias_method :h, :escape_html
 
-      def domain_from_url(url)
-        host = URI.parse(url).host.downcase
-        host.start_with?('www.') ? host[4..-1] : host
-      end
-
       def protected!
         return if authorized?
         headers['WWW-Authenticate'] = 'Basic realm="Restricted Area"'
@@ -61,10 +56,6 @@ module Travlrmap
       end
     end
 
-    def kml_style_url(type)
-      "travlrmap-%s-style" % type
-    end
-
     def load_map(set=nil)
       @points = []
 
@@ -84,11 +75,11 @@ module Travlrmap
             Dir.entries(point_file).grep(/\.yaml$/).each do |points|
               file = File.join(point_file, points)
               data = YAML.load_file(file)
-              @points.concat(data[:points])
+              @points.concat(data[:points].map{|p| Point.new(p, @types)})
             end
           else
             data = YAML.load_file(point_file)
-            @points.concat(data[:points])
+            @points.concat(data[:points].map{|p| Point.new(p, @types)})
           end
         end
       end
@@ -107,9 +98,10 @@ module Travlrmap
 
     def to_json
       @points.sort_by{|p| p[:country]}.map do |point|
-        point[:popup_html] = erb(:"_point_comment", :layout => false, :locals => {:point => point})
-        point[:icon] = @types[ point[:type] ][:icon]
-        point
+        p = point.to_hash
+        p[:popup_html] = point.to_html
+        p[:icon] = @types[ point[:type] ][:icon]
+        p
       end.to_json
     end
 
@@ -123,7 +115,7 @@ module Travlrmap
 
       @types.each do |k, t|
         document.styles << KML::Style.new(
-          :id         => kml_style_url(k),
+          :id         => Util.kml_style_url(k, :type),
           :icon_style => KML::IconStyle.new(:icon => KML::Icon.new(:href => t[:icon]))
         )
       end
@@ -135,12 +127,7 @@ module Travlrmap
 
         f = folders[point[:country]]
 
-        f.features << KML::Placemark.new(
-          :name        => point[:title],
-          :description => erb(:"_point_comment", :layout => false, :locals => {:point => point}),
-          :geometry    => KML::Point.new(:coordinates => {:lat => point[:lat], :lng => point[:lon]}),
-          :style_url   => "#%s" % kml_style_url(point[:type])
-        )
+        f.features << point.to_placemark
       end
 
       document.features << folder
@@ -150,21 +137,7 @@ module Travlrmap
     end
 
     def point_from_json(json)
-      data = JSON.parse(json)
-
-      point = {}
-
-      ["title", "comment", "country", "date", "href", "linktext", "linkimg", "lon", "lat"].each do |i|
-        if data[i].is_a?(String)
-          point[i.intern] = data[i] unless data[i].empty?
-        else
-          point[i.intern] = data[i]
-        end
-      end
-
-      point[:type] = data["type"].intern
-
-      point
+      Point.new(json, @types, :json)
     end
 
     get '/view/:view/?:set?' do
@@ -270,7 +243,7 @@ module Travlrmap
       point = point_from_json(request.body.read)
 
       result = {"yaml" => YAML.dump([point]).lines.to_a[1..-1].join,
-                "html" => erb(:"_point_comment", :layout => false, :locals => {:point => point})}
+                "html" => point.to_html}
 
       result.to_json
     end
