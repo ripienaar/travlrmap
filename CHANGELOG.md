@@ -1,6 +1,7 @@
 ### 1.4.0
-  * Avoid double titles in Google Earth by not putting the title in the html
-  * Show the correct error message when a point failed to save
+  * Avoid double titles in Google Earth by not putting the title in the html (#29)
+  * Show the correct error message when a point failed to save (#29)
+  * General refactoring from single sinatra file to a few utility classes (#29)
 
 ### 1.3.0
   * Improve mobile rendering of the geocoder and support geocoding current position (#5)
