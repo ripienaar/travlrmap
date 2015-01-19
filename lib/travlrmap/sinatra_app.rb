@@ -13,6 +13,9 @@ module Travlrmap
 
       @map[:map_types] = ["hybrid", "roadmap", "satellite", "terrain", "osm"] unless @map[:map_types]
       @map[:default_map_type] = "roadmap" unless @map[:default_map_type]
+      @map[:theme] = "css" unless @map[:theme]
+
+      raise "Unknown theme %s" % @map[:theme] unless valid_themes.include?(@map[:theme])
 
       super()
     end
@@ -20,6 +23,12 @@ module Travlrmap
     set :static, true
     set :views, File.join(File.expand_path(File.dirname(__FILE__)), "../..", "views")
     set :public_folder, File.join(File.expand_path(File.dirname(__FILE__)), "../..", "public")
+
+    def valid_themes
+      ["cerulean", "cosmo", "cyborg", "darkly", "flatly", "journal",
+       "lumen", "paper", "readable", "sandstone", "simplex", "slate",
+       "spacelab", "superhero", "united", "yeti", "css"]
+    end
 
     helpers do
       include Rack::Utils
