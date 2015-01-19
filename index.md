@@ -29,6 +29,7 @@ Follow the links to the left to learn how to install, configure and add points.
   * A web based tool to help you visually construct the YAML snippets needed using search with the option to save them server side
   * Geocoding page usable on a mobile device and supports using current location (1.3.0)
   * Optional authentication around the geocoder
+  * Support bootswatch themes (1.4.0)
   * Support for 3rd party map tile sets like Map Quest and Open Streetmap (1.1.0)
   * Full control over the Google Map like enabling or disabling the street view options
   * Export to KML for viewing in tools like Google Earth

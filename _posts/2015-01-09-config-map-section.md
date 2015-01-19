@@ -132,6 +132,31 @@ As of version ```1.1.0``` a number of 3rd party Open Streetmap based map tile se
 
 For your own just list the ones you like and set the default.
 
+### Bootswatch Themes
+
+Since 1.4.0 you can configure any of the http://www.bootstrapcdn.com/#bootswatch_tab hosted themes, to configure it set:
+
+```YAML
+  :theme: cosmo
+```
+
+Valid themes are:
+
+   * cosmo
+   * cyborg
+   * darkly
+   * flatly
+   * journal
+   * lumen
+   * paper
+   * readable
+   * sandstone
+   * simplex
+   * slate
+   * spacelab
+   * superhero
+   * united
+   * yeti
 
 ### Geocode helper page
 
