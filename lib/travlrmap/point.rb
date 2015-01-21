@@ -16,7 +16,7 @@ module Travlrmap
     end
 
     def preview
-      {"yaml" => YAML.dump([self]).lines.to_a[1..-1].join,
+      {"yaml" => YAML.dump([self.to_hash]).lines.to_a[1..-1].join,
        "html" => self.to_html}
     end
 

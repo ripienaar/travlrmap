@@ -65,7 +65,7 @@ module Travlrmap
     def countries
       @points.map do |point|
         point[:country]
-      end.sort.uniq
+      end.compact.sort.uniq
     end
 
     def size
