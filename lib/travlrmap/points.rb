@@ -30,7 +30,7 @@ module Travlrmap
 
     def save_to_file(file)
       File.open(file, "w") do |f|
-        f.puts YAML.dump(:points => @points)
+        f.puts YAML.dump(:points => @points.map{|p| p.to_hash})
       end
     end
 

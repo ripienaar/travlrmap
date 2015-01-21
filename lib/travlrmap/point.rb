@@ -52,10 +52,6 @@ module Travlrmap
       @point.clone
     end
 
-    def to_yaml(opts)
-      @point.to_yaml(opts)
-    end
-
     def to_placemark
       KML::Placemark.new(
         :name        => self[:title],
