@@ -4,6 +4,7 @@
   * General refactoring from single sinatra file to a few utility classes (#29)
   * Better handling of domains without linktext (#29)
   * Support bootswatch themes (#34)
+  * Support for Ruby 1.8.7 has been removed
 
 ### 1.3.0
   * Improve mobile rendering of the geocoder and support geocoding current position (#5)
