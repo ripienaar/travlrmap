@@ -3,3 +3,4 @@ config/travels
 config/wishlist
 pkg
 images
+.ruby-version
