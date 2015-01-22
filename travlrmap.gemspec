@@ -21,7 +21,6 @@ Gem::Specification::new do |spec|
 
   spec.add_dependency 'sinatra'
   spec.add_dependency 'bundler'
-  spec.add_dependency 'httparty'
   spec.add_dependency 'ruby_kml'
   spec.add_dependency 'httparty'
   spec.add_dependency 'nokogiri'
