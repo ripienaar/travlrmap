@@ -8,7 +8,7 @@ GEM
     json (1.8.2)
     mini_portile (0.6.2)
     multi_xml (0.5.5)
-    nokogiri (1.6.5)
+    nokogiri (1.6.6.1)
       mini_portile (~> 0.6.0)
     rack (1.5.2)
     rack-protection (1.5.3)
@@ -26,9 +26,9 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  httparty
-  json
-  nokogiri
+  httparty (~> 0.13)
+  json (~> 1.8)
+  nokogiri (~> 1.6)
   rack (= 1.5.2)
-  ruby_kml
-  sinatra
+  ruby_kml (~> 0.1)
+  sinatra (~> 1.4)
