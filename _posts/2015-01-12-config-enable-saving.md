@@ -4,6 +4,7 @@ title: "Config - Enable saving"
 category: ref
 date: 2015-01-12 19:35:05
 order: 4
+disqus: 1
 ---
 
 As of version ```1.2.0``` you can enable saving of data files to a specific data file under ```config```

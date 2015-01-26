@@ -4,6 +4,7 @@ title: "Setting up"
 category: doc
 date: 2015-01-09 17:50:11
 order: 0
+disqus: 1
 ---
 
 The app is distributed as a [RubyGem](http://rubygems.org/gems/travlrmap) so to host your own either on a PaaS or locally you only need config file, points and a ```Gemfile```.

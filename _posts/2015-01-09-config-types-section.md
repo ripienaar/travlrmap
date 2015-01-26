@@ -4,6 +4,7 @@ title: "Config - Types section"
 category: ref
 date: 2015-01-09 19:27:16
 order: 2
+disqus: 1
 ---
 
 Points have a ```:type:``` property, you can define your own types and icons to use.

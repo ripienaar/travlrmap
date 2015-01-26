@@ -4,6 +4,7 @@ title: "Config - Views section"
 category: ref
 date: 2015-01-09 19:22:50
 order: 1
+disqus: 1
 ---
 
 Views appear at the top of the site in a menu and allow you to define view ports to help users of the site zoom in to predefined locations you choose.

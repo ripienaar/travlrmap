@@ -3,6 +3,7 @@ layout: page
 title: "Point Reference"
 category: ref
 date: 2015-01-09 18:10:54
+disqus: 1
 ---
 
 Points are stored in YAML files, here's a sample of a file with 1 point in it:

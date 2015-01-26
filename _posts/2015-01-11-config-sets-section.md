@@ -4,6 +4,7 @@ title: "Config - Sets section"
 category: ref
 date: 2015-01-11 16:40:03
 order: 3
+disqus: 1
 ---
 
 Data sets allow you to create additional groups of points - imagine your main set of points is places you've been to but you'd also like to track places you'd like to travel, a data set can be created for that and viewed seperately.
