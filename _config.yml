@@ -11,6 +11,8 @@ navigation: 2
 # URL to source code, used in _includes/footer.html
 codeurl: 'https://github.com/ripienaar/travlrmap'
 
+discus_shortname: travlrmap
+
 # Default categories (in order) to appear in the navigation
 sections: [
     ['doc', 'Documentation'],
