@@ -4,6 +4,7 @@ title: "Config - Map section"
 category: ref
 date: 2015-01-09 18:44:07
 order: 0
+disqus: 1
 ---
 
 The main section of the configuration file is the ```map``` section, the supplied one will work out of the box, you'll need to tweak it if you want to change the title, icon sets, clustering options etc.
@@ -141,7 +142,7 @@ For your own just list the ones you like and set the default.
 
 ### Bootswatch Themes
 
-Since 1.4.0 you can configure any of the http://www.bootstrapcdn.com/#bootswatch_tab hosted themes, to configure it set:
+Since 1.4.0 you can customise the look of your site using any of the [Bootstrap CDN](http://www.bootstrapcdn.com/#bootswatch_tab) hosted bootswatch themes, to configure it set:
 
 ```YAML
   :theme: cosmo

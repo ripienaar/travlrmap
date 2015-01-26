@@ -38,23 +38,24 @@
                 {% endif %}
             </div>
 
-            {% if page.discuss == 1 %}
-            <div class=row-fluid>
-                <div id=footer class=span12>
-            </div>
+            {% if page.disqus == 1 %}
+              {% if site.navigation == 1 or post_count > 0 %}
+                <div id=navigation class=span2></div>
+                <div id=disqus class=span10>
+                    {% include disqus.html %}
+                </div>
+              {% else %}
+                <div id=disqus class=span12>
+                    {% include disqus.html %}
+                </div>
+              {% endif %}
             {% endif %}
 
+
             <div class=row-fluid>
-                <div id=navigation class=span2></div>
-                {% if site.navigation == 1 or post_count > 0 %}
-                <div id=footer class=span10>
-                    {% include disqus.html %}
-                </div>
-                {% else %}
-                <div id=footer class=span12>
-                    {% include disqus.html %}
-                </div>
-                {% endif %}
+              <div class=row-fluid>
+                  <div id=footer class=span12>
+              </div>
             </div>
         </div>
 
