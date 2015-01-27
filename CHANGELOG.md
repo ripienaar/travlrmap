@@ -1,3 +1,6 @@
+### 1.5.0
+  * Upgrade to bootstrap and bootswatch 3.3.2 (#33)
+
 ### 1.4.0
   * Avoid double titles in Google Earth by not putting the title in the html (#29)
   * Show the correct error message when a point failed to save (#29)
