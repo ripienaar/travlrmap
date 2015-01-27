@@ -12,6 +12,7 @@ navigation: 2
 codeurl: 'https://github.com/ripienaar/travlrmap'
 
 disqus_shortname: travlrmap
+google_analytics_id: 'UA-10152852-11'
 
 # Default categories (in order) to appear in the navigation
 sections: [
