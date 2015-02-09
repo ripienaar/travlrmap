@@ -66,6 +66,8 @@
 
       for (var i = 0; i < addrComponents.length; i++) {
         if ($.inArray(addrComponents[i].types[0], ["establishment", "point_of_interest", "postal_town", "locality"])) {
+          if !isNaN(addrComponents[i].long_name) continue;
+
           return addrComponents[i].long_name;
         }
       }
