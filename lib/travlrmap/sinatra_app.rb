@@ -1,3 +1,4 @@
+# encoding: utf-8
 module Travlrmap
   class SinatraApp < ::Sinatra::Base
     def initialize(config)
