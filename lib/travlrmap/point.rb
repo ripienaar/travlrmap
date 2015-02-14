@@ -1,3 +1,4 @@
+# encoding: utf-8
 module Travlrmap
   class Point
     def initialize(from, types, type=:json)

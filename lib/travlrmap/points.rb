@@ -1,3 +1,4 @@
+# encoding: utf-8
 module Travlrmap
   class Points
     def initialize(types, sets, map)

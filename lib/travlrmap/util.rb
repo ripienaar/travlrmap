@@ -1,3 +1,4 @@
+# encoding: utf-8
 module Travlrmap
   module Util
     def self.kml_style_url(key, type)
