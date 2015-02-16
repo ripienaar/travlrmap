@@ -53,7 +53,9 @@ module Travlrmap
           if request.env["REMOTE_USER"] == @map[:admin_user]
             return true
           else
-            return false
+            # return 403 to avoid infinite loop with 401 (probably due to
+            # basic auth conflict between application and webserver)
+            halt(403, "Access forbidden\n")
           end
         end
 
