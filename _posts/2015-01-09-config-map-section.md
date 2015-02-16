@@ -196,3 +196,12 @@ Compute your password by getting the md5 of the salt plus your password:
 $ echo -n d34fda332a0f8997d33db8172b67b1a319fd79d108568aa4fbdb2bpassword | md5sum
 156166b575d6074b82f7f6c8453b81b8
 ```
+
+**Webserver basic authentication**
+
+Since version 1.5.0 authentication can also be managed with you webserver basic authentication mechanism. All you have to do is activate the authentication and provide the user to be authorized:
+
+```YAML
+  :authenticate: true
+  :admin_user: admin
+```
