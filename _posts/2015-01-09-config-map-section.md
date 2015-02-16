@@ -199,7 +199,7 @@ $ echo -n d34fda332a0f8997d33db8172b67b1a319fd79d108568aa4fbdb2bpassword | md5su
 
 **Webserver basic authentication**
 
-Authentication can also be managed with you webserver basic authentication mechanism. All you have to do is activate the authentication and provide the user to be authorized:
+Since version 1.5.0 authentication can also be managed with you webserver basic authentication mechanism. All you have to do is activate the authentication and provide the user to be authorized:
 
 ```YAML
   :authenticate: true
