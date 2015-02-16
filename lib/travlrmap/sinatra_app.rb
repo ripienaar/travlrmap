@@ -45,9 +45,20 @@ module Travlrmap
       def authorized?
         return true if !@map[:authenticate]
 
+        halt(500, ":admin_user: is not set in the config") unless @map[:admin_user]
+
+        # if the webserver sets a user and its admin let her into the protected
+        # areas else fail the auth
+        if request.env.include?("REMOTE_USER")
+          if request.env["REMOTE_USER"] == @map[:admin_user]
+            return true
+          else
+            return false
+          end
+        end
+
         halt(500, ":admin_salt: is not set in the config") unless @map[:admin_salt]
         halt(500, ":admin_salt: should be at least 16 characters") unless @map[:admin_salt].length >= 16
-        halt(500, ":admin_user: is not set in the config") unless @map[:admin_user]
         halt(500, ":admin_hash: is not set in the config") unless @map[:admin_hash]
 
         @auth ||=  Rack::Auth::Basic::Request.new(request.env)
