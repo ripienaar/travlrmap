@@ -37,6 +37,7 @@ module Travlrmap
       alias_method :h, :escape_html
 
       def protected!
+        return if (@map[:allow_webserver_authent] && ENV.key?('REMOTE_USER') && !ENV['REMOTE_USER'].empty?)
         return if authorized?
         headers['WWW-Authenticate'] = 'Basic realm="Restricted Area"'
         halt(401, "Not authorized\n")
