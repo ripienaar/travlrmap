@@ -4,3 +4,4 @@ config/wishlist
 pkg
 images
 .ruby-version
+*.swp

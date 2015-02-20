@@ -48,6 +48,9 @@
         <input type="text" class="form-control" id="point_country" placeholder="Country">
       </div>
       <div class="form-group">
+        <input type="text" class="form-control" id="point_gallery" placeholder="Gallery Specification">
+      </div>
+      <div class="form-group">
       <button type="submit" class="btn btn-primary">Preview</button>
       </div>
     </form>
@@ -136,9 +139,17 @@
       point.comment = document.getElementById('point_comment').value
       point.country = document.getElementById('point_country').value
       point.date = document.getElementById('point_date').value
-      point.href = document.getElementById('point_href').value
       point.linktext = document.getElementById('point_linktext').value
       point.linkimg = document.getElementById('point_linkimg').value
+
+      if (point.type != "gallery" && point.type != "track") {
+        point.href = document.getElementById('point_href').value
+      }
+
+      if (point.type == "gallery") {
+        point.gallery = document.getElementById('point_gallery').value
+      }
+
       point.lon = marker.position.lng();
       point.lat = marker.position.lat();
 
