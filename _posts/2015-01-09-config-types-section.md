@@ -12,17 +12,24 @@ Points have a ```:type:``` property, you can define your own types and icons to 
 ```YAML
 :types:
   :visit:
-    :icon: /markers/marker-RED-REGULAR.png
+    :icon: /mapicons/tourism/visited.png
     :description: Visit
   :transit:
-    :icon: /markers/marker-BLUE-REGULAR.png
+    :icon: /mapicons/transportation/airport.png
     :description: Transit
   :lived:
-    :icon: /markers/marker-GREEN-REGULAR.png
+    :icon: /mapicons/friends-family/home-2.png
     :description: Lived
+  :wishlist:
+    :icon: /mapicons/tourism/notvisited.png
+    :description: Wishlist
+  :gallery:
+    :icon: /mapicons/stores/photography.png
+    :description: Gallery
+    :legend: false
 ```
 
-A number of markers in many colors and 3 sizes are [included in the Gem](https://github.com/ripienaar/travlrmap/tree/master/public/markers).
+A number of markers in many colors and 3 sizes are [included in the Gem](https://github.com/ripienaar/travlrmap/tree/master/public/markers).  Additionally most of the icons from the [Map Icons Collection](http://mapicons.nicolasmollet.com/) are included and as of 1.5.0 these are used by default.
 
 If you intend to use the KML output you should change these URLs to be full URLs to your site rather than relative.  The KML file does not know where to get the files so you'll get broken images if you dont.
 
