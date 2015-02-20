@@ -14,9 +14,9 @@
   :cluster_grid_size: 40
   :cluster_minumum_size: 2
   :cluster_zoom_on_click: true
-  :cluster_image_path: /cluster/cluster-RED-
-  :cluster_image_extension: png
-  :cluster_image_sizes: [25, 27, 31, 37, 43]
+  #:cluster_image_path: /cluster/cluster-RED-
+  #:cluster_image_extension: png
+  #:cluster_image_sizes: [25, 27, 31, 37, 43]
   :show_geocode_link: true
   :authenticate: false
   :map_types: [hybrid, roadmap, satellite, terrain, osm]
@@ -42,11 +42,18 @@
 
 :types:
   :visit:
-    :icon: /markers/marker-RED-REGULAR.png
+    :icon: /mapicons/tourism/visited.png
     :description: Visit
   :transit:
-    :icon: /markers/marker-BLUE-REGULAR.png
+    :icon: /mapicons/transportation/airport.png
     :description: Transit
   :lived:
-    :icon: /markers/marker-GREEN-REGULAR.png
+    :icon: /mapicons/friends-family/home-2.png
     :description: Lived
+  :wishlist:
+    :icon: /mapicons/tourism/notvisited.png
+    :description: Wishlist
+  :gallery:
+    :icon: /mapicons/culture-entertainment/photography.png
+    :description: Gallery
+    :legend: false
