@@ -45,7 +45,7 @@ Key        |Description
 :linkimg:  | An optional image to show instead of the default placeholder text for the href
 :linktext: | Optional text to use for the link, can combine with the image
 :date:     | The date of this visit, dddd-mm-yy format
-
+:gallery:  | Specification of a gallery
 
 ### Format conversions
 
