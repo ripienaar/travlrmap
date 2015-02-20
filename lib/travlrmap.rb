@@ -14,4 +14,5 @@ module Travlrmap
   require 'travlrmap/point'
   require 'travlrmap/points'
   require 'travlrmap/sinatra_app'
+  require 'travlrmap/gallery'
 end

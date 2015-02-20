@@ -198,12 +198,7 @@ module Travlrmap
       requested_file = params[:splat].first
       file = File.expand_path(File.join("images", requested_file), APPROOT)
 
-      if File.exist?(file)
-        send_file(file)
-      else
-        status 404
-        "Not Found"
-      end
+      send_file(file)
     end
   end
 end

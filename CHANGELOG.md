@@ -4,6 +4,10 @@
   * Ruby 1.9.3 and UTF-8 compatibility
   * Improve geolocate lookups by skipping purely numerical results for place names (#41)
   * Add today button to the calendar (#42)
+  * Initial rudementary support for Galleries (#47)
+  * Use map icons from http://mapicons.nicolasmollet.com/ to spruce things up a bit (#52)
+  * Use new icons and default marker cluster style by default (#52)
+  * Allow types to be hidden on the legend, useful for types like galleries (#47)
 
 ### 1.4.0
   * Avoid double titles in Google Earth by not putting the title in the html (#29)

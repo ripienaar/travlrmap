@@ -2,7 +2,7 @@
 <%= erb :"_map_js", :layout => false %>
 <div align=center>
 <br />
-<% @config[:types].sort_by{|_, s| s[:description]}.each do |_, settings| %>
+<% @config[:types].sort_by{|_, s| s[:description].to_s}.select{|_,s| s.fetch(:legend, true)}.each do |name, settings| %>
   <img src="<%= settings[:icon] %>">&nbsp;<%= settings[:description] %>
 <% end %>
 <br />

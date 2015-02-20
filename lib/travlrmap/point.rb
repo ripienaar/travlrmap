@@ -77,9 +77,11 @@ module Travlrmap
     end
 
     def from_hash(data)
-      [:title, :comment, :country, :date, :href, :linktext, :linkimg, :lon, :lat, :type].each do |i|
+      [:title, :comment, :country, :date, :href, :linktext, :linkimg, :lon, :lat, :type, :gallery].each do |i|
+        next if data[i].to_s.empty?
+
         if data[i].is_a?(String)
-          @point[i] = data[i] unless data[i].empty?
+          @point[i] = data[i]
         else
           @point[i] = data[i]
         end
@@ -89,33 +91,13 @@ module Travlrmap
     end
 
     def point_html_template
-      <<-EOS
-<p>
-<% if title %><font size="+2"><%= @point[:title] %></font><% end %>
-<hr>
-<% if @point[:comment] %>
-<%=  h @point[:comment] %><br /><br />
-<% end %>
-<% if @point[:href]  %>
-     <a href='<%= @point[:href] %>' target='_blank'>
-<% end %>
-<% if @point[:linkimg] || @point[:linktext] %>
-<%   if @point[:linkimg] %>
-       <img src='<%= @point[:linkimg] %>'><br />
-<%   end %>
-<%   if @point[:linktext] %>
-       <%= h @point[:linktext] %>
-<%   end %>
-<% elsif @point[:href] %>
-     <%= Util.domain_from_url(@point[:href]) %>
-<% end %>
-<% if @point[:href]  %>
-     </a>
-<% end %>
-</p>
-<p>
-<font size"-2"><%= h @types[ @point[:type] ][:description] %><% if @point[:date] %> on <%= h @point[:date] %><% end %></font>
-      EOS
+      if [:gallery, :track].include?(@point[:type])
+        file = "%s.yaml" % @point[:type]
+      else
+        file = "generic.yaml"
+      end
+
+      File.read(File.join(APPROOT, "views", "point_types", file))
     end
   end
 end

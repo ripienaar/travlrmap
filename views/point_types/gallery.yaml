@@ -1,0 +1,20 @@
+<p>
+<% if title %><font size="+2"><%= @point[:title] %></font><% end %>
+<hr>
+<% if @point[:comment] %>
+<%=  h @point[:comment] %><br /><br />
+<% end %>
+     <a href='<%= Gallery.url_from_spec(@point[:gallery]) %>' target='_blank'>
+<% if @point[:linkimg] || @point[:linktext] %>
+<%   if @point[:linkimg] %>
+       <img src='<%= @point[:linkimg] %>'><br />
+<%   end %>
+<%   if @point[:linktext] %>
+       <%= h @point[:linktext] %>
+<%   end %>
+<% else %>
+     Gallery
+<% end %>
+     </a>
+</p>
+<p>
