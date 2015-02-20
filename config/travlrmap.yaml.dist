@@ -54,6 +54,6 @@
     :icon: /mapicons/tourism/notvisited.png
     :description: Wishlist
   :gallery:
-    :icon: /mapicons/culture-entertainment/photography.png
+    :icon: /mapicons/stores/photography.png
     :description: Gallery
     :legend: false

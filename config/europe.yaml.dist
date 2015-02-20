@@ -1,5 +1,14 @@
 ---
 :points:
+- :title: Holiday February 2015
+  :comment: Gallery of photos taken on holiday early 2015
+  :country: Spain
+  :linktext: East Coast Road Trip
+  :linkimg: https://farm8.staticflickr.com/7387/16331224608_f36063b0cd_m_d.jpg
+  :lon: -4
+  :lat: 39
+  :type: :gallery
+  :gallery: flickr,user=ripienaar,set=72157648567428473
 - :type: :visit
   :lon: 4.42028
   :title: Antwerp
