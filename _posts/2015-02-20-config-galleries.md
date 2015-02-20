@@ -4,6 +4,7 @@ title: "Config - Galleries"
 category: ref
 date: 2015-02-20 20:22:47
 disqus: 1
+order: 5
 ---
 
 As of version 1.5.0 galleries are implemented using a special kind of point using
