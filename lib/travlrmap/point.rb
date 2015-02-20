@@ -97,7 +97,7 @@ module Travlrmap
         file = "generic.yaml"
       end
 
-      File.read(File.join(APPROOT, "views", "point_types", file))
+      File.read(File.join(Util.template_dir, "point_types", file))
     end
   end
 end
