@@ -97,7 +97,7 @@ module Travlrmap
         file = "generic.erb"
       end
 
-      File.read(File.join(Util.template_dir, "point_types", file))
+      File.open(File.join(Util.template_dir, "point_types", file), "r:utf-8") {|f| f.read}
     end
   end
 end
