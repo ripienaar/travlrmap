@@ -92,9 +92,9 @@ module Travlrmap
 
     def point_html_template
       if [:gallery, :track].include?(@point[:type])
-        file = "%s.yaml" % @point[:type]
+        file = "%s.erb" % @point[:type]
       else
-        file = "generic.yaml"
+        file = "generic.erb"
       end
 
       File.read(File.join(Util.template_dir, "point_types", file))
