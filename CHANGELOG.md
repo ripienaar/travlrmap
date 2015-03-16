@@ -1,3 +1,7 @@
+### 1.5.1
+  * Upgrade to bootstrap and bootswatch 3.3.4 (#56)
+  * Change color of notvisited icon to be more distinctive (#55)
+
 ### 1.5.0
   * Upgrade to bootstrap and bootswatch 3.3.2 (#33)
   * Support authentication by another webserver (#49)
