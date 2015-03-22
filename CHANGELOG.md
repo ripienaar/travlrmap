@@ -1,3 +1,6 @@
+### 1.5.2
+  * Add preview images for each catagory of mapicons (#58)
+
 ### 1.5.1
   * Upgrade to bootstrap and bootswatch 3.3.4 (#56)
   * Change color of notvisited icon to be more distinctive (#55)
