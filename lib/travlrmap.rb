@@ -5,6 +5,7 @@ require 'sinatra'
 require 'json'
 require "digest/md5"
 require 'cgi'
+require 'json'
 
 Bundler.require(:default)
 
