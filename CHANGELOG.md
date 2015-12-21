@@ -1,3 +1,6 @@
+### 1.5.3
+  * Update bootstrap to 3.3.6 (#60)
+
 ### 1.5.2
   * Add preview images for each catagory of mapicons (#58)
   * Specifically require JSON
